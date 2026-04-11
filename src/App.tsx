@@ -158,7 +158,48 @@ const SectionHeading = ({ subtitle, title, description, centered = true }: { sub
     )}
   </div>
 );
+const Pricing = () => (
+  <div style={{ padding: '100px 20px', textAlign: 'center', backgroundColor: '#000', color: '#fff' }}>
+    <h2 style={{ fontSize: '2.5rem', marginBottom: '50px', fontWeight: '300' }}>SERVICE TIERS</h2>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', maxWidth: '1100px', margin: '0 auto' }}>
+      
+      {/* Tier 1: The Quick Win */}
+      <div style={{ border: '1px solid #333', padding: '40px', borderRadius: '4px' }}>
+        <h3>STARTER</h3>
+        <p style={{ fontSize: '1.5rem' }}>$600</p>
+        <ul style={{ listStyle: 'none', padding: 0, opacity: 0.7 }}>
+          <li>Single Page Launch</li>
+          <li>Vercel Deployment</li>
+          <li>Custom Domain Setup</li>
+        </ul>
+      </div>
 
+      {/* Tier 2: The Main Income (Highlight this one) */}
+      <div style={{ border: '2px solid #fff', padding: '40px', borderRadius: '4px', transform: 'scale(1.05)' }}>
+        <h3>PROFESSIONAL</h3>
+        <p style={{ fontSize: '1.5rem' }}>$1,500</p>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          <li>Multi-Page Business Site</li>
+          <li>Advanced SEO Indexing</li>
+          <li>Speed Optimization</li>
+        </ul>
+        <button style={{ background: '#fff', color: '#000', border: 'none', padding: '10px 20px', marginTop: '20px', cursor: 'pointer' }}>CHOOSE PRO</button>
+      </div>
+
+      {/* Tier 3: The Big Profit */}
+      <div style={{ border: '1px solid #333', padding: '40px', borderRadius: '4px' }}>
+        <h3>AGENCY</h3>
+        <p style={{ fontSize: '1.5rem' }}>$3,000+</p>
+        <ul style={{ listStyle: 'none', padding: 0, opacity: 0.7 }}>
+          <li>Custom App Logic</li>
+          <li>Full Brand Identity</li>
+          <li>24/7 Priority Support</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+);
 export default function App() {
   const [rating, setRating] = useState(5);
   const { scrollYProgress } = useScroll();
