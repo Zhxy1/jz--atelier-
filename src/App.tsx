@@ -45,7 +45,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Service Tiers', href: '#pricing-tiers' },
     { name: 'Payments', href: '#payments' },
     { name: 'Why Us', href: '#why-us' },
     { name: 'Contact', href: '#contact' },
@@ -319,11 +319,11 @@ export default function App() {
                 Get Free Demo <ArrowRight className="w-6 h-6" />
               </motion.a>
               <motion.a 
-                href="#pricing" 
+                href="#pricing-tiers" 
                 whileHover={{ backgroundColor: "#fff", color: "#000" }}
                 className="w-full sm:w-auto border-2 border-white text-white px-8 py-4 font-display text-2xl tracking-wider transition-all uppercase"
               >
-                View Pricing
+                Service Tiers
               </motion.a>
             </div>
           </motion.div>
