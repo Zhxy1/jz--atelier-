@@ -182,12 +182,14 @@ const Pricing = () => (
           className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
         >
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Starter</h3>
-          <div className="text-5xl font-display font-bold mb-8 tracking-tighter">$600</div>
+          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$600–$800</div>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $60/YEAR DOMAIN</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Single Page Launch</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Custom Website</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Mobile & Tablet Optimized</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> High-Converting Forms</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Basic SEO Setup</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Vercel Deployment</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Custom Domain Setup</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Mobile Optimized</li>
           </ul>
           <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
             Select Starter
@@ -206,13 +208,14 @@ const Pricing = () => (
             Most Popular
           </div>
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Professional</h3>
-          <div className="text-5xl font-display font-bold mb-8 tracking-tighter">$1,500</div>
+          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$1,500</div>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $25–$50/MO MAINTENANCE</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-300">
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Multi-Page Business Site</li>
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Advanced SEO Indexing</li>
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Speed Optimization</li>
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Custom Contact Engine</li>
-            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> 1 Month Maintenance</li>
+            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Priority Support</li>
           </ul>
           <a href="#contact" className="bg-white text-black py-4 text-center font-display font-bold hover:bg-brand-purple hover:text-white transition-all uppercase tracking-widest text-sm">
             Choose Professional
@@ -228,7 +231,8 @@ const Pricing = () => (
           className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
         >
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Agency</h3>
-          <div className="text-5xl font-display font-bold mb-8 tracking-tighter">$3,000+</div>
+          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$3,000+</div>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">CUSTOM ENTERPRISE FEES</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Custom App Logic</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Brand Identity</li>
@@ -241,6 +245,25 @@ const Pricing = () => (
           </a>
         </motion.div>
       </div>
+      
+      {/* Risk-Free CTA */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-20 p-8 border border-brand-red bg-brand-red/5 flex flex-col md:flex-row items-center justify-between gap-8"
+      >
+        <div className="flex items-center gap-6">
+          <ShieldCheck className="w-12 h-12 text-brand-red" />
+          <div className="text-left">
+            <h4 className="text-2xl font-display font-bold uppercase tracking-tight">Risk-Free Start</h4>
+            <p className="text-xs font-mono text-gray-400 uppercase tracking-widest">We build the demo first. You only pay if you love it.</p>
+          </div>
+        </div>
+        <a href="#contact" className="bg-brand-red text-white px-10 py-4 font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest">
+          Start My Free Demo
+        </a>
+      </motion.div>
     </div>
   </section>
 );
@@ -283,7 +306,7 @@ export default function App() {
               <span className="gradient-text glitch-text" data-text="Kill The Competition">Kill The Competition</span>
             </h1>
             <p className="text-sm md:text-xl text-gray-400 font-mono max-w-3xl mx-auto mb-12 leading-relaxed uppercase tracking-tight">
-              Custom builds for local pros starting at <span className="text-brand-red font-bold">$800</span>. 
+              Custom builds for local pros starting at <span className="text-brand-red font-bold">$600–$800</span>. 
               Built to dominate your local market.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -493,79 +516,6 @@ export default function App() {
       </section>
 
       <Pricing />
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading 
-            subtitle="Pricing" 
-            title="Clear & Honest Pricing" 
-            description="No hidden fees. No complicated contracts. Just high-quality work."
-          />
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Website Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2 rough-card p-8 md:p-12 border-brand-red/20 bg-white/[0.02]"
-            >
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
-                <div>
-                  <h3 className="text-4xl font-display font-bold mb-2 uppercase tracking-tight">Main Website Package</h3>
-                  <p className="text-gray-400 font-mono text-sm uppercase tracking-widest">Everything you need to get online professionally.</p>
-                </div>
-                <div className="text-left md:text-right">
-                  <div className="text-5xl md:text-6xl font-display font-bold text-brand-red tracking-tighter">$800–$1000</div>
-                  <p className="text-brand-accent font-mono font-bold uppercase text-xs tracking-widest">One-time payment</p>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <ul className="space-y-4">
-                  {[
-                    "Full Custom Website Design",
-                    "Mobile & Tablet Optimization",
-                    "High-Converting Contact Forms",
-                    "Basic SEO Setup",
-                    "Premium Performance Tuning"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-300 font-mono text-sm uppercase tracking-tight">
-                      <CheckCircle2 className="w-5 h-5 text-brand-red shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="space-y-6">
-                  <div className="p-8 bg-white/5 border-l-4 border-brand-accent">
-                    <p className="text-xs font-mono font-bold text-brand-accent uppercase tracking-widest mb-2">// Required</p>
-                    <div className="text-3xl font-display font-bold mb-1">$65/YEAR</div>
-                    <p className="text-gray-400 text-xs font-mono uppercase tracking-widest">Domain & Hosting Fee</p>
-                  </div>
-                  <div className="p-8 bg-brand-purple/5 border-l-4 border-brand-purple">
-                    <p className="text-xs font-mono font-bold text-brand-purple uppercase tracking-widest mb-2">// Optional Maintenance</p>
-                    <div className="text-3xl font-display font-bold mb-1">$25–$50/MO</div>
-                    <p className="text-gray-400 text-xs font-mono uppercase tracking-widest leading-tight">Full site management & updates by our expert team.</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* CTA Card */}
-            <div className="rough-card p-8 flex flex-col justify-center items-center text-center bg-brand-red border-none">
-              <ShieldCheck className="w-20 h-20 mb-6 text-white" />
-              <h3 className="text-4xl font-display font-bold mb-4 uppercase tracking-tight">Risk-Free Start</h3>
-              <p className="text-white/80 font-mono text-sm uppercase tracking-widest mb-8">
-                We build the demo first. You only pay if you love it.
-              </p>
-              <a href="#contact" className="w-full bg-white text-black py-5 font-display text-2xl tracking-widest hover:bg-black hover:text-white transition-all uppercase">
-                Start My Free Demo
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Traffic & Ads Section */}
       <section id="traffic-ads" className="py-24 bg-brand-dark relative overflow-hidden">
