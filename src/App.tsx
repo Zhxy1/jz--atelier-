@@ -158,48 +158,93 @@ const SectionHeading = ({ subtitle, title, description, centered = true }: { sub
     )}
   </div>
 );
+
 const Pricing = () => (
-  <div style={{ padding: '100px 20px', textAlign: 'center', backgroundColor: '#000', color: '#fff' }}>
-    <h2 style={{ fontSize: '2.5rem', marginBottom: '50px', fontWeight: '300' }}>SERVICE TIERS</h2>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', maxWidth: '1100px', margin: '0 auto' }}>
+  <section id="pricing-tiers" className="py-24 bg-black text-white border-y border-white/10">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-20">
+        <motion.span 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-brand-purple font-mono text-xs font-bold uppercase tracking-[0.4em] mb-4 block"
+        >
+          // Investment Tiers
+        </motion.span>
+        <h2 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter">Service Tiers</h2>
+      </div>
       
-      {/* Tier 1: The Quick Win */}
-      <div style={{ border: '1px solid #333', padding: '40px', borderRadius: '4px' }}>
-        <h3>STARTER</h3>
-        <p style={{ fontSize: '1.5rem' }}>$600</p>
-        <ul style={{ listStyle: 'none', padding: 0, opacity: 0.7 }}>
-          <li>Single Page Launch</li>
-          <li>Vercel Deployment</li>
-          <li>Custom Domain Setup</li>
-        </ul>
-      </div>
+      <div className="grid md:grid-cols-3 gap-8">
+        {/* Starter */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
+        >
+          <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Starter</h3>
+          <div className="text-5xl font-display font-bold mb-8 tracking-tighter">$600</div>
+          <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Single Page Launch</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Vercel Deployment</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Custom Domain Setup</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Mobile Optimized</li>
+          </ul>
+          <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
+            Select Starter
+          </a>
+        </motion.div>
 
-      {/* Tier 2: The Main Income (Highlight this one) */}
-      <div style={{ border: '2px solid #fff', padding: '40px', borderRadius: '4px', transform: 'scale(1.05)' }}>
-        <h3>PROFESSIONAL</h3>
-        <p style={{ fontSize: '1.5rem' }}>$1,500</p>
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          <li>Multi-Page Business Site</li>
-          <li>Advanced SEO Indexing</li>
-          <li>Speed Optimization</li>
-        </ul>
-        <button style={{ background: '#fff', color: '#000', border: 'none', padding: '10px 20px', marginTop: '20px', cursor: 'pointer' }}>CHOOSE PRO</button>
-      </div>
+        {/* Pro */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="border-2 border-white p-10 flex flex-col relative scale-105 bg-white/5 z-10 shadow-[20px_20px_0px_0px_rgba(168,85,247,0.1)]"
+        >
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-purple text-white px-6 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
+            Most Popular
+          </div>
+          <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Professional</h3>
+          <div className="text-5xl font-display font-bold mb-8 tracking-tighter">$1,500</div>
+          <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-300">
+            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Multi-Page Business Site</li>
+            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Advanced SEO Indexing</li>
+            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Speed Optimization</li>
+            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Custom Contact Engine</li>
+            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> 1 Month Maintenance</li>
+          </ul>
+          <a href="#contact" className="bg-white text-black py-4 text-center font-display font-bold hover:bg-brand-purple hover:text-white transition-all uppercase tracking-widest text-sm">
+            Choose Professional
+          </a>
+        </motion.div>
 
-      {/* Tier 3: The Big Profit */}
-      <div style={{ border: '1px solid #333', padding: '40px', borderRadius: '4px' }}>
-        <h3>AGENCY</h3>
-        <p style={{ fontSize: '1.5rem' }}>$3,000+</p>
-        <ul style={{ listStyle: 'none', padding: 0, opacity: 0.7 }}>
-          <li>Custom App Logic</li>
-          <li>Full Brand Identity</li>
-          <li>24/7 Priority Support</li>
-        </ul>
+        {/* Agency */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
+        >
+          <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Agency</h3>
+          <div className="text-5xl font-display font-bold mb-8 tracking-tighter">$3,000+</div>
+          <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Custom App Logic</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Brand Identity</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> 24/7 Priority Support</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Unlimited Revisions</li>
+            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Marketing Suite</li>
+          </ul>
+          <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
+            Select Agency
+          </a>
+        </motion.div>
       </div>
-
     </div>
-  </div>
+  </section>
 );
+
 export default function App() {
   const [rating, setRating] = useState(5);
   const { scrollYProgress } = useScroll();
@@ -446,6 +491,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <Pricing />
 
       {/* Pricing Section */}
       <section id="pricing" className="py-24">
