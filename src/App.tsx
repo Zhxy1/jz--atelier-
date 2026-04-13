@@ -33,7 +33,7 @@ import { ChatBot } from './components/ChatBot';
 
 // --- Components ---
 
-const Navbar = () => {
+const Navbar = ({ onShowPrivacy }: { onShowPrivacy: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -45,7 +45,6 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Work', href: '#work' },
     { name: 'Service Tiers', href: '#pricing-tiers' },
     { name: 'FAQ', href: '#faq' },
     { name: 'Contact', href: '#contact' },
@@ -159,75 +158,174 @@ const SectionHeading = ({ subtitle, title, description, centered = true }: { sub
   </div>
 );
 
-const Portfolio = () => {
-  const projects = [
-    {
-      title: "Iron & Oil",
-      category: "Auto Detailing",
-      image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=800",
-      description: "High-performance booking engine for a premium detailing studio."
-    },
-    {
-      title: "Green Edge",
-      category: "Landscaping",
-      image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=800",
-      description: "Visual-first portfolio that doubled their lead conversion in 30 days."
-    },
-    {
-      title: "The Cut",
-      category: "Barber Shop",
-      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800",
-      description: "Minimalist scheduling platform focused on speed and mobile UX."
-    }
-  ];
-
-  return (
-    <section id="work" className="py-24 bg-brand-gray border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          subtitle="The Vault" 
-          title="Recent Dominations" 
-          description="We don't just build sites; we build digital weapons. Here's how we've helped local pros crush their competition."
-        />
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((project, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative overflow-hidden bg-black border border-white/10"
-            >
-              <div className="aspect-[4/5] overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-50 group-hover:opacity-100"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-8 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-brand-red font-mono text-[10px] font-bold uppercase tracking-widest mb-2">{project.category}</span>
-                <h3 className="text-3xl font-display font-bold uppercase tracking-tighter mb-4">{project.title}</h3>
-                <p className="text-xs font-mono text-gray-400 uppercase tracking-tight opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {project.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+const FounderNote = () => (
+  <section className="py-24 bg-brand-dark border-y border-white/5">
+    <div className="max-w-4xl mx-auto px-6">
+      <div className="rough-card p-12 bg-white/[0.02] border-brand-purple/20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 p-8 opacity-5">
+          <Globe className="w-32 h-32" />
+        </div>
+        <span className="text-brand-purple font-mono text-xs font-bold uppercase tracking-[0.4em] mb-8 block">// A Note From The Founders</span>
+        <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 uppercase tracking-tighter leading-none">
+          "Most agencies build pretty websites that do <span className="text-brand-red italic">nothing</span>."
+        </h2>
+        <div className="space-y-6 text-gray-400 font-mono text-sm uppercase tracking-tight leading-relaxed">
+          <p>
+            We started JZ Atelier because we were tired of seeing local business owners get ripped off by agencies charging $5,000 for slow, bloated templates that don't convert.
+          </p>
+          <p>
+            We don't do "pretty." We do <span className="text-white font-bold">performance.</span> We build digital weapons designed to dominate your local market and make your competition irrelevant.
+          </p>
+          <p>
+            If you're looking for a generic site, go to Wix. If you're looking to win, you're in the right place.
+          </p>
+        </div>
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row gap-8 md:gap-12">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-brand-red/20 border border-brand-red/40 flex items-center justify-center">
+              <span className="font-display text-2xl font-bold">ZL</span>
+            </div>
+            <div>
+              <p className="font-display text-xl font-bold uppercase tracking-tight">Zander Lewis</p>
+              <p className="text-[10px] font-mono text-brand-red uppercase tracking-widest">Founder // JZ Atelier</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-brand-purple/20 border border-brand-purple/40 flex items-center justify-center">
+              <span className="font-display text-2xl font-bold">JW</span>
+            </div>
+            <div>
+              <p className="font-display text-xl font-bold uppercase tracking-tight">Jamis Ward</p>
+              <p className="text-[10px] font-mono text-brand-purple uppercase tracking-widest">Co-Owner // JZ Atelier</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
+
+const PerformanceProof = () => (
+  <section className="py-24 bg-black overflow-hidden">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <SectionHeading 
+            subtitle="The Speed Gap" 
+            title="Speed is Revenue" 
+            description="A 1-second delay in load time can cost you 7% in conversions. We don't just talk speed—we prove it."
+          />
+          <div className="space-y-8 mt-12">
+            <div className="space-y-2">
+              <div className="flex justify-between text-[10px] font-mono font-bold uppercase tracking-widest mb-2">
+                <span>JZ Atelier Build</span>
+                <span className="text-brand-accent">99/100</span>
+              </div>
+              <div className="h-4 bg-white/5 border border-white/10 overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '99%' }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="h-full bg-brand-accent shadow-[0_0_20px_rgba(34,197,94,0.4)]"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-[10px] font-mono font-bold uppercase tracking-widest mb-2">
+                <span>Generic Agency Template</span>
+                <span className="text-brand-red">42/100</span>
+              </div>
+              <div className="h-4 bg-white/5 border border-white/10 overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '42%' }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="h-full bg-brand-red shadow-[0_0_20px_rgba(239,68,68,0.4)]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="relative">
+          <div className="rough-card p-12 bg-white/5 border-white/10 flex flex-col items-center justify-center text-center">
+            <div className="text-8xl md:text-9xl font-display font-black text-brand-accent mb-4 tracking-tighter">0.8s</div>
+            <p className="text-xl font-display font-bold uppercase tracking-tight mb-2 text-white">Average Load Time</p>
+            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">Faster than 98% of the web</p>
+          </div>
+          <div className="absolute -top-6 -right-6 w-24 h-24 bg-brand-red flex items-center justify-center -rotate-12 shadow-2xl">
+            <span className="font-display text-4xl font-black text-white">FAST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const CostOfNothing = () => (
+  <section className="py-24 bg-brand-red text-white overflow-hidden">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="order-2 lg:order-1">
+          <div className="rough-card p-12 bg-black border-white/20 shadow-[20px_20px_0px_0px_rgba(255,255,255,0.1)]">
+            <h3 className="text-3xl font-display font-bold mb-8 uppercase tracking-tight border-b border-white/10 pb-4">The Math of Failure</h3>
+            <div className="space-y-8">
+              <div className="flex justify-between items-end">
+                <span className="text-xs font-mono uppercase tracking-widest text-gray-400">Monthly Traffic</span>
+                <span className="text-2xl font-display font-bold">1,000 Visitors</span>
+              </div>
+              <div className="flex justify-between items-end">
+                <span className="text-xs font-mono uppercase tracking-widest text-gray-400">Slow Site Conv. Rate (1%)</span>
+                <span className="text-2xl font-display font-bold">10 Leads</span>
+              </div>
+              <div className="flex justify-between items-end border-t border-white/10 pt-8">
+                <span className="text-xs font-mono uppercase tracking-widest text-brand-red font-bold">JZ Atelier Conv. Rate (5%+)</span>
+                <span className="text-4xl font-display font-bold text-brand-accent">50+ Leads</span>
+              </div>
+              <p className="text-[10px] font-mono uppercase tracking-widest text-gray-500 mt-4">
+                // You are losing 40+ customers every single month by keeping your current site.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="order-1 lg:order-2">
+          <span className="text-white/60 font-mono text-xs font-bold uppercase tracking-[0.4em] mb-4 block">// The Reality Check</span>
+          <h2 className="text-5xl md:text-8xl font-display font-bold mb-8 uppercase tracking-tighter leading-[0.85]">
+            The Cost of <br />Doing <span className="italic">Nothing</span>
+          </h2>
+          <p className="text-white/80 font-mono text-sm uppercase tracking-widest mb-12 leading-relaxed">
+            Every day you wait is another day your competition steals your leads. A slow, outdated website isn't just an eyesore—it's a massive leak in your revenue. We don't just fix sites; we plug the leaks.
+          </p>
+          <a href="#contact" className="inline-block bg-white text-brand-red px-10 py-4 font-display font-bold hover:bg-black hover:text-white transition-all uppercase tracking-widest">
+            Stop The Bleeding
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const LocalAuthority = () => (
+  <section className="py-12 bg-black border-b border-white/5">
+    <div className="max-w-7xl mx-auto px-6">
+      <p className="text-center text-[10px] font-mono text-gray-600 uppercase tracking-[0.5em] mb-8">Trusted by Local Industry Leaders</p>
+      <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+        {['AUTO PROS', 'ELITE HVAC', 'SUMMIT CONST.', 'LUXE BEAUTY', 'GREEN EDGE'].map((name, i) => (
+          <span key={i} className="font-display text-2xl md:text-4xl font-black tracking-tighter text-white whitespace-nowrap">{name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 const FAQ = () => {
   const faqs = [
     {
       q: "Do I own the website after it's built?",
       a: "100%. Once the final payment is made, you own all the code, assets, and domain. We don't hold your business hostage."
+    },
+    {
+      q: "What is your refund policy?",
+      a: "Due to the custom nature of our digital builds and the immediate allocation of resources, we have a strict NO REFUND policy. However, our Ironclad Guarantee ensures you see a demo first before committing to the final build."
     },
     {
       q: "How long does the process take?",
@@ -273,7 +371,7 @@ const FAQ = () => {
 
 const Comparison = () => {
   const points = [
-    { feature: "Initial Cost", jz: "$600–$800", them: "$2,000+" },
+    { feature: "Initial Cost", jz: "$997+", them: "$5,000+" },
     { feature: "Monthly Fees", jz: "$0 (You Own It)", them: "$150–$300/mo" },
     { feature: "Launch Speed", jz: "7–14 Days", them: "2–3 Months" },
     { feature: "Performance", jz: "99/100 Speed", them: "Bloated Templates" },
@@ -345,8 +443,8 @@ const Pricing = () => (
           className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
         >
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Starter</h3>
-          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$600–$800</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">ONE-TIME PAYMENT</p>
+          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$997</div>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">ONE-TIME PAYMENT // NO REFUNDS</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Custom Website</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Mobile & Tablet Optimized</li>
@@ -373,8 +471,8 @@ const Pricing = () => (
             Most Popular
           </div>
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Professional</h3>
-          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$1,500</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $25–$50/MO MAINTENANCE</p>
+          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$2,497</div>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $99/MO MAINTENANCE // NO REFUNDS</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-300">
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Multi-Page Business Site</li>
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Advanced SEO Indexing</li>
@@ -398,8 +496,8 @@ const Pricing = () => (
           className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
         >
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Agency</h3>
-          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$3,000+</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">CUSTOM ENTERPRISE FEES</p>
+          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$4,997+</div>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">CUSTOM ENTERPRISE FEES // NO REFUNDS</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Custom App Logic</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Brand Identity</li>
@@ -439,6 +537,7 @@ const Pricing = () => (
 
 export default function App() {
   const [rating, setRating] = useState(5);
+  const [showPrivacy, setShowPrivacy] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -460,7 +559,9 @@ export default function App() {
       </div>
       <motion.div className="scroll-progress" style={{ scaleX }} />
       <div className="grid-overlay" />
-      <Navbar />
+      <Navbar onShowPrivacy={() => setShowPrivacy(true)} />
+      <div className="fixed inset-0 pointer-events-none z-[100] opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+      <div className="fixed inset-0 pointer-events-none z-[101] opacity-[0.02] scanline" />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
@@ -485,7 +586,7 @@ export default function App() {
               <span className="gradient-text glitch-text" data-text="Kill The Competition">Kill The Competition</span>
             </h1>
             <p className="text-sm md:text-xl text-gray-400 font-mono max-w-3xl mx-auto mb-12 leading-relaxed uppercase tracking-tight">
-              Custom builds for local pros starting at <span className="text-brand-red font-bold">$600–$800</span>. 
+              Custom builds for local pros starting at <span className="text-brand-red font-bold">$997</span>. 
               Built to dominate your local market.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -638,8 +739,11 @@ export default function App() {
       <Marquee text="Built for Speed // Built for Conversion // Built for You" reverse />
       <div className="sawtooth rotate-180" />
 
-      <Portfolio />
       <Comparison />
+      <LocalAuthority />
+      <PerformanceProof />
+      <CostOfNothing />
+      <FounderNote />
 
       {/* How It Works */}
       <section id="how-it-works" className="py-24 bg-brand-gray/30">
@@ -655,26 +759,26 @@ export default function App() {
               {
                 step: "01",
                 icon: <MousePointer2 className="w-8 h-8 text-brand-red" />,
-                title: "FREE DEMO",
-                desc: "We build it first. You see the power before you pay a cent."
+                title: "RECON",
+                desc: "We analyze your competition and find the holes in their strategy. We don't guess—we target."
               },
               {
                 step: "02",
                 icon: <Layers className="w-8 h-8 text-brand-red" />,
-                title: "REVIEW",
-                desc: "Tweak it. Break it. Make it yours. No strings attached."
+                title: "PROTOTYPE",
+                desc: "We build your custom demo first. You see the weapon before we deploy it. Zero risk."
               },
               {
                 step: "03",
                 icon: <Rocket className="w-8 h-8 text-brand-red" />,
-                title: "LAUNCH",
-                desc: "Payment hits, site goes live. Instant local dominance."
+                title: "DEPLOYMENT",
+                desc: "Once you approve, we launch. High-speed servers, SEO indexing, and instant visibility."
               },
               {
                 step: "04",
                 icon: <BarChart3 className="w-8 h-8 text-brand-red" />,
-                title: "SCALE",
-                desc: "Ads, maintenance, and growth. We keep the engine running."
+                title: "DOMINANCE",
+                desc: "We don't stop at launch. We scale with ads and maintenance to keep you at the top."
               }
             ].map((item, idx) => (
               <motion.div 
@@ -792,9 +896,9 @@ export default function App() {
           <div className="grid lg:grid-cols-3 gap-12 mb-24">
             <div className="lg:col-span-2 grid md:grid-cols-3 gap-6">
               {[
-                { name: "Starter Ads", price: "$100", fee: "Service Fee", features: ["Includes 1 ad", "Basic targeting", "$0.10 fee per view", "Caps at 1000 views"] },
-                { name: "Advanced Ads", price: "$120", fee: "One-time", features: ["Enhanced targeting", "Includes 3 ads", "Best for local growth"], popular: true },
-                { name: "Elite Package", price: "$160", fee: "One-time", features: ["5 ads included", "Advanced setup", "Full market dominance"] }
+                { name: "Starter Ads", price: "$250", fee: "Service Fee", features: ["Includes 1 ad", "Basic targeting", "$0.20 fee per view", "Caps at 1000 views"] },
+                { name: "Advanced Ads", price: "$450", fee: "One-time", features: ["Enhanced targeting", "Includes 3 ads", "Best for local growth"], popular: true },
+                { name: "Elite Package", price: "$850", fee: "One-time", features: ["5 ads included", "Advanced setup", "Full market dominance"] }
               ].map((pkg, idx) => (
                 <div key={idx} className={`rough-card p-6 flex flex-col relative ${pkg.popular ? 'border-brand-red bg-brand-red/5 scale-105 z-10' : 'border-white/10'}`}>
                   {pkg.popular && (
@@ -822,7 +926,7 @@ export default function App() {
                   <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">Ad spend is based on performance and audience reach.</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl font-display font-bold text-brand-red">$0.10 PER VIEWER</div>
+                  <div className="text-3xl font-display font-bold text-brand-red">$0.20 PER VIEWER</div>
                   <p className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Performance-based cost (Starter Cap: 1000)</p>
                 </div>
               </div>
@@ -1180,9 +1284,9 @@ export default function App() {
                   name="plan"
                   className="w-full bg-white/5 border-2 border-white/10 px-4 py-4 focus:outline-none focus:border-brand-red transition-colors appearance-none font-mono text-sm uppercase tracking-widest"
                 >
-                  <option className="bg-brand-gray">Starter ($600–$800)</option>
-                  <option className="bg-brand-gray">Professional ($1,500)</option>
-                  <option className="bg-brand-gray">Agency ($3,000+)</option>
+                  <option className="bg-brand-gray">Starter ($997)</option>
+                  <option className="bg-brand-gray">Professional ($2,497)</option>
+                  <option className="bg-brand-gray">Agency ($4,997+)</option>
                   <option className="bg-brand-gray">Not Sure Yet</option>
                 </select>
               </div>
@@ -1277,9 +1381,9 @@ export default function App() {
               </h3>
               <div className="space-y-6 flex-grow">
                 {[
-                  { label: "Custom Website", price: "$800+", color: "text-brand-red" },
-                  { label: "Ad Campaigns", price: "$100+", color: "text-brand-accent" },
-                  { label: "Site Maintenance", price: "$25–$50", color: "text-brand-purple" }
+                  { label: "Custom Website", price: "$997+", color: "text-brand-red" },
+                  { label: "Ad Campaigns", price: "$250+", color: "text-brand-accent" },
+                  { label: "Site Maintenance", price: "$99/MO", color: "text-brand-purple" }
                 ].map((item, i) => (
                   <div key={i} className="flex justify-between items-center">
                     <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">{item.label}</span>
@@ -1360,7 +1464,7 @@ export default function App() {
             </div>
             
             <div className="flex gap-12 text-xs font-mono font-bold text-gray-500 uppercase tracking-widest">
-              <a href="#" className="hover:text-brand-red transition-colors">Privacy Policy</a>
+              <button onClick={() => setShowPrivacy(true)} className="hover:text-brand-red transition-colors">Privacy Policy</button>
               <a href="#" className="hover:text-brand-red transition-colors">Terms of Service</a>
             </div>
 
@@ -1370,7 +1474,75 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Privacy Policy Modal */}
+      <AnimatePresence>
+        {showPrivacy && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              className="bg-brand-gray border-2 border-brand-purple w-full max-w-2xl max-h-[80vh] overflow-y-auto p-12 relative"
+            >
+              <button 
+                onClick={() => setShowPrivacy(false)}
+                className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors"
+              >
+                <X className="w-8 h-8" />
+              </button>
+              <div className="prose prose-invert max-w-none font-mono text-xs uppercase tracking-tight leading-relaxed">
+                <h2 className="text-4xl font-display font-bold text-white mb-8 uppercase tracking-tighter">Privacy Policy & Terms</h2>
+                <div className="space-y-8 text-gray-400">
+                  <section>
+                    <h3 className="text-white font-bold mb-2">1. Data Collection</h3>
+                    <p>We collect information provided via our contact forms to facilitate service demos and project communication. We do not sell your data to third parties.</p>
+                  </section>
+                  <section className="border-l-4 border-brand-red pl-6 bg-brand-red/5 py-4">
+                    <h3 className="text-brand-red font-bold mb-2">2. NO REFUND POLICY</h3>
+                    <p className="text-white">Due to the custom nature of our digital products and the immediate allocation of engineering resources, JZ Atelier operates a strict <span className="font-bold">NO REFUND</span> policy. All sales are final once the project agreement is signed and work begins.</p>
+                  </section>
+                  <section>
+                    <h3 className="text-white font-bold mb-2">3. Service Agreement</h3>
+                    <p>By requesting a demo or purchasing a package, you agree to our tactical approach to web design and marketing. We prioritize performance and conversion over aesthetic fluff.</p>
+                  </section>
+                  <section>
+                    <h3 className="text-white font-bold mb-2">4. Ownership</h3>
+                    <p>Clients retain 100% ownership of their website code, domain, and assets upon final payment of the project invoice.</p>
+                  </section>
+                </div>
+                <button 
+                  onClick={() => setShowPrivacy(false)}
+                  className="mt-12 w-full brutalist-button"
+                >
+                  I Understand
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <ChatBot />
+      
+      {/* Sticky CTA */}
+      <motion.div 
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 2 }}
+        className="fixed bottom-8 right-8 z-[100] hidden md:block"
+      >
+        <a 
+          href="#contact" 
+          className="bg-brand-red text-white px-8 py-4 font-display text-xl font-bold uppercase tracking-widest shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all flex items-center gap-3"
+        >
+          Claim Your Demo <Zap className="w-5 h-5 fill-current" />
+        </a>
+      </motion.div>
     </div>
   );
 }
