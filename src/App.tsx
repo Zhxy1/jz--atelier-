@@ -1122,24 +1122,24 @@ export default function App() {
           </div>
           <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 uppercase tracking-tighter">Direct Support</h2>
           <p className="text-gray-400 font-mono text-sm uppercase tracking-widest mb-12 max-w-2xl mx-auto">
-            Need immediate help? Text our support line directly. We filter all messages to ensure our clients get priority attention.
+            Need immediate help? Email our support team directly. We filter all messages to ensure our clients get priority attention.
           </p>
           
           <div className="rough-card p-10 border-brand-purple">
-            <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-tight">Text Only Support</h3>
-            <p className="text-4xl md:text-6xl font-display font-bold text-white mb-8 tracking-tighter">319-483-8875</p>
+            <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-tight">Email Support</h3>
+            <p className="text-2xl md:text-4xl font-display font-bold text-white mb-8 tracking-tighter">zanderlewis80@gmail.com</p>
             
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <a 
-                href="sms:+13194838875?body=I%20need%20help%20with%20my%20website%20demo.%20My%20name%20is%20[Your%20Name]."
+                href="mailto:zanderlewis80@gmail.com?subject=Support%20Request&body=Hello%20JZ%20Atelier,%0D%0A%0D%0AI%20need%20help%20with%20my%20website.%20My%20name%20is%20[Your%20Name]."
                 className="bg-brand-purple hover:bg-white hover:text-black text-white px-10 py-5 font-display text-2xl tracking-widest transition-all uppercase"
               >
-                Send Support Text
+                Send Support Email
               </a>
             </div>
             
             <p className="mt-8 text-[10px] font-mono text-gray-600 uppercase tracking-[0.2em]">
-              // NO CALLS // TEXT ONLY // AUTOMATED FILTERING ACTIVE
+              // EMAIL ONLY // AUTOMATED FILTERING ACTIVE
             </p>
           </div>
         </div>
