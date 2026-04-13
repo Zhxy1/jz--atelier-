@@ -1122,25 +1122,43 @@ export default function App() {
           </div>
           <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 uppercase tracking-tighter">Direct Support</h2>
           <p className="text-gray-400 font-mono text-sm uppercase tracking-widest mb-12 max-w-2xl mx-auto">
-            Need immediate help? Email our support team directly. We filter all messages to ensure our clients get priority attention.
+            Need immediate help? Text our business line or email our support team directly. We filter all messages to ensure our clients get priority attention.
           </p>
           
-          <div className="rough-card p-10 border-brand-purple">
-            <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-tight">Email Support</h3>
-            <p className="text-2xl md:text-4xl font-display font-bold text-white mb-8 tracking-tighter">zanderlewis80@gmail.com</p>
-            
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a 
-                href="mailto:zanderlewis80@gmail.com?subject=Support%20Request&body=Hello%20JZ%20Atelier,%0D%0A%0D%0AI%20need%20help%20with%20my%20website.%20My%20name%20is%20[Your%20Name]."
-                className="bg-brand-purple hover:bg-white hover:text-black text-white px-10 py-5 font-display text-2xl tracking-widest transition-all uppercase"
-              >
-                Send Support Email
-              </a>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="rough-card p-10 border-brand-purple">
+              <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-tight">Text Support</h3>
+              <p className="text-3xl md:text-5xl font-display font-bold text-white mb-8 tracking-tighter">319-406-2965</p>
+              
+              <div className="flex justify-center">
+                <a 
+                  href="sms:+13194062965?body=Hello%20JZ%20Atelier,%20I%20need%20help%20with%20my%20website."
+                  className="w-full bg-brand-purple hover:bg-white hover:text-black text-white px-6 py-4 font-display text-xl tracking-widest transition-all uppercase"
+                >
+                  Send Text
+                </a>
+              </div>
+              <p className="mt-6 text-[10px] font-mono text-gray-600 uppercase tracking-[0.2em]">
+                // TEXT ONLY // NO CALLS
+              </p>
             </div>
-            
-            <p className="mt-8 text-[10px] font-mono text-gray-600 uppercase tracking-[0.2em]">
-              // EMAIL ONLY // AUTOMATED FILTERING ACTIVE
-            </p>
+
+            <div className="rough-card p-10 border-white/10 bg-white/[0.02]">
+              <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-tight">Email Support</h3>
+              <p className="text-xl md:text-2xl font-display font-bold text-white mb-8 tracking-tight break-all">zanderlewis80@gmail.com</p>
+              
+              <div className="flex justify-center">
+                <a 
+                  href="mailto:zanderlewis80@gmail.com?subject=Support%20Request"
+                  className="w-full border-2 border-white/20 hover:bg-white hover:text-black text-white px-6 py-4 font-display text-xl tracking-widest transition-all uppercase"
+                >
+                  Send Email
+                </a>
+              </div>
+              <p className="mt-6 text-[10px] font-mono text-gray-600 uppercase tracking-[0.2em]">
+                // 24/7 MONITORING
+              </p>
+            </div>
           </div>
         </div>
       </section>
