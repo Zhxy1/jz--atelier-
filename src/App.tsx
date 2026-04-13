@@ -921,6 +921,7 @@ export default function App() {
                 const businessType = formData.get('business-type');
                 const phone = formData.get('phone');
                 const service = formData.get('service');
+                const plan = formData.get('plan');
                 
                 const subject = encodeURIComponent(`New Demo Request: ${business}`);
                 const body = encodeURIComponent(
@@ -930,7 +931,8 @@ export default function App() {
                   `Business: ${business}\n` +
                   `Business Type: ${businessType}\n` +
                   `Phone: ${phone}\n` +
-                  `Service Requested: ${service}\n\n` +
+                  `Service Requested: ${service}\n` +
+                  `Selected Plan: ${plan}\n\n` +
                   `Please reach out to me within 24 hours.`
                 );
                 
@@ -987,6 +989,18 @@ export default function App() {
                   <option className="bg-brand-gray">Website + Ads</option>
                   <option className="bg-brand-gray">Ads Only</option>
                   <option className="bg-brand-gray">Other</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-mono font-bold text-gray-500 uppercase tracking-widest">Select Plan</label>
+                <select 
+                  name="plan"
+                  className="w-full bg-white/5 border-2 border-white/10 px-4 py-4 focus:outline-none focus:border-brand-red transition-colors appearance-none font-mono text-sm uppercase tracking-widest"
+                >
+                  <option className="bg-brand-gray">Starter ($600–$800)</option>
+                  <option className="bg-brand-gray">Professional ($1,500)</option>
+                  <option className="bg-brand-gray">Agency ($3,000+)</option>
+                  <option className="bg-brand-gray">Not Sure Yet</option>
                 </select>
               </div>
               <div className="md:col-span-2 pt-4">
