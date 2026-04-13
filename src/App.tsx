@@ -45,9 +45,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Work', href: '#work' },
     { name: 'Service Tiers', href: '#pricing-tiers' },
-    { name: 'Payments', href: '#payments' },
-    { name: 'Why Us', href: '#why-us' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -159,6 +159,169 @@ const SectionHeading = ({ subtitle, title, description, centered = true }: { sub
   </div>
 );
 
+const Portfolio = () => {
+  const projects = [
+    {
+      title: "Iron & Oil",
+      category: "Auto Detailing",
+      image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=800",
+      description: "High-performance booking engine for a premium detailing studio."
+    },
+    {
+      title: "Green Edge",
+      category: "Landscaping",
+      image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=800",
+      description: "Visual-first portfolio that doubled their lead conversion in 30 days."
+    },
+    {
+      title: "The Cut",
+      category: "Barber Shop",
+      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800",
+      description: "Minimalist scheduling platform focused on speed and mobile UX."
+    }
+  ];
+
+  return (
+    <section id="work" className="py-24 bg-brand-gray border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionHeading 
+          subtitle="The Vault" 
+          title="Recent Dominations" 
+          description="We don't just build sites; we build digital weapons. Here's how we've helped local pros crush their competition."
+        />
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {projects.map((project, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group relative overflow-hidden bg-black border border-white/10"
+            >
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-50 group-hover:opacity-100"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-8 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <span className="text-brand-red font-mono text-[10px] font-bold uppercase tracking-widest mb-2">{project.category}</span>
+                <h3 className="text-3xl font-display font-bold uppercase tracking-tighter mb-4">{project.title}</h3>
+                <p className="text-xs font-mono text-gray-400 uppercase tracking-tight opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                  {project.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FAQ = () => {
+  const faqs = [
+    {
+      q: "Do I own the website after it's built?",
+      a: "100%. Once the final payment is made, you own all the code, assets, and domain. We don't hold your business hostage."
+    },
+    {
+      q: "How long does the process take?",
+      a: "For Starter packages, we aim for a 7-14 day launch. Complex Agency builds can take 4-6 weeks depending on custom logic requirements."
+    },
+    {
+      q: "What if I don't like the initial demo?",
+      a: "Our start is risk-free. If you're not happy with the direction of the initial demo, we'll either pivot or you can walk away. No hard feelings."
+    },
+    {
+      q: "Is hosting and domain included?",
+      a: "We handle the setup for you. Domain and hosting are handled via Vercel's high-performance edge network."
+    }
+  ];
+
+  return (
+    <section id="faq" className="py-24 bg-black border-y border-white/5">
+      <div className="max-w-4xl mx-auto px-6">
+        <SectionHeading subtitle="Intel" title="Common Questions" centered={false} />
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="border border-white/10 p-8 hover:border-brand-purple/30 transition-colors bg-white/[0.02]"
+            >
+              <h3 className="text-xl font-display font-bold uppercase tracking-tight mb-4 flex gap-4">
+                <span className="text-brand-purple">Q:</span> {faq.q}
+              </h3>
+              <p className="text-sm font-mono text-gray-400 uppercase tracking-tight leading-relaxed">
+                <span className="text-brand-red font-bold">A:</span> {faq.a}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Comparison = () => {
+  const points = [
+    { feature: "Initial Cost", jz: "$600–$800", them: "$2,000+" },
+    { feature: "Monthly Fees", jz: "$0 (You Own It)", them: "$150–$300/mo" },
+    { feature: "Launch Speed", jz: "7–14 Days", them: "2–3 Months" },
+    { feature: "Performance", jz: "99/100 Speed", them: "Bloated Templates" },
+    { feature: "Risk", jz: "Free Demo First", them: "Pay Upfront" },
+  ];
+
+  return (
+    <section className="py-24 bg-black border-y border-white/5">
+      <div className="max-w-5xl mx-auto px-6">
+        <SectionHeading subtitle="The Gap" title="Us vs. The Competition" />
+        <div className="border border-white/10 overflow-hidden">
+          <div className="grid grid-cols-3 bg-white/5 border-b border-white/10">
+            <div className="p-6 font-mono text-[10px] uppercase tracking-widest text-gray-500">Feature</div>
+            <div className="p-6 font-display font-bold uppercase tracking-tight text-brand-red">JZ Atelier</div>
+            <div className="p-6 font-mono text-[10px] uppercase tracking-widest text-gray-500">Generic Agency</div>
+          </div>
+          {points.map((point, i) => (
+            <div key={i} className="grid grid-cols-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors">
+              <div className="p-6 font-mono text-xs uppercase tracking-tight text-gray-400 border-r border-white/5">{point.feature}</div>
+              <div className="p-6 font-display font-bold uppercase tracking-tight text-white border-r border-white/5">{point.jz}</div>
+              <div className="p-6 font-mono text-xs uppercase tracking-tight text-gray-600">{point.them}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Guarantee = () => (
+  <section className="py-24 bg-brand-red">
+    <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="inline-block p-4 bg-white/10 mb-8">
+        <ShieldCheck className="w-16 h-16 text-white" />
+      </div>
+      <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 uppercase tracking-tighter text-white">The Ironclad Guarantee</h2>
+      <p className="text-white/80 font-mono text-sm uppercase tracking-widest mb-12 max-w-2xl mx-auto leading-relaxed">
+        If we don't build you a demo that makes you want to fire your current agency on the spot, you don't pay a cent. We take all the risk because we know we win.
+      </p>
+      <div className="flex justify-center">
+        <a href="#contact" className="bg-white text-brand-red px-12 py-5 font-display text-2xl font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all">
+          Claim Your Demo
+        </a>
+      </div>
+    </div>
+  </section>
+);
+
 const Pricing = () => (
   <section id="pricing-tiers" className="py-24 bg-black text-white border-y border-white/10">
     <div className="max-w-7xl mx-auto px-6">
@@ -183,7 +346,7 @@ const Pricing = () => (
         >
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Starter</h3>
           <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$600–$800</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $60/YEAR DOMAIN</p>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">ONE-TIME PAYMENT</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Custom Website</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Mobile & Tablet Optimized</li>
@@ -191,9 +354,11 @@ const Pricing = () => (
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Basic SEO Setup</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Vercel Deployment</li>
           </ul>
-          <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
-            Select Starter
-          </a>
+          <div className="flex flex-col gap-3">
+            <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
+              Select Starter
+            </a>
+          </div>
         </motion.div>
 
         {/* Pro */}
@@ -217,9 +382,11 @@ const Pricing = () => (
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Custom Contact Engine</li>
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Priority Support</li>
           </ul>
-          <a href="#contact" className="bg-white text-black py-4 text-center font-display font-bold hover:bg-brand-purple hover:text-white transition-all uppercase tracking-widest text-sm">
-            Choose Professional
-          </a>
+          <div className="flex flex-col gap-3">
+            <a href="#contact" className="bg-white text-black py-4 text-center font-display font-bold hover:bg-brand-purple hover:text-white transition-all uppercase tracking-widest text-sm">
+              Choose Professional
+            </a>
+          </div>
         </motion.div>
 
         {/* Agency */}
@@ -240,9 +407,11 @@ const Pricing = () => (
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Unlimited Revisions</li>
             <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Marketing Suite</li>
           </ul>
-          <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
-            Select Agency
-          </a>
+          <div className="flex flex-col gap-3">
+            <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
+              Select Agency
+            </a>
+          </div>
         </motion.div>
       </div>
       
@@ -277,8 +446,18 @@ export default function App() {
     restDelta: 0.001
   });
 
+  const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date());
+  const dayOfMonth = new Date().getDate();
+  // Start with 5 spots, drop based on date to create urgency
+  const spotsLeft = Math.max(1, 5 - Math.floor(dayOfMonth / 6));
+
   return (
     <div className="min-h-screen selection:bg-brand-red/30">
+      <div className="bg-brand-red py-2 text-center relative z-[60]">
+        <p className="text-[10px] font-mono font-bold text-white uppercase tracking-[0.3em]">
+          <span className="animate-pulse">●</span> Capacity Status: {spotsLeft} of 5 spots remaining for {currentMonth}
+        </p>
+      </div>
       <motion.div className="scroll-progress" style={{ scaleX }} />
       <div className="grid-overlay" />
       <Navbar />
@@ -459,6 +638,9 @@ export default function App() {
       <Marquee text="Built for Speed // Built for Conversion // Built for You" reverse />
       <div className="sawtooth rotate-180" />
 
+      <Portfolio />
+      <Comparison />
+
       {/* How It Works */}
       <section id="how-it-works" className="py-24 bg-brand-gray/30">
         <div className="max-w-7xl mx-auto px-6">
@@ -516,6 +698,7 @@ export default function App() {
       </section>
 
       <Pricing />
+      <Guarantee />
 
       {/* Traffic & Ads Section */}
       <section id="traffic-ads" className="py-24 bg-brand-dark relative overflow-hidden">
@@ -1043,16 +1226,16 @@ export default function App() {
               <div className="rough-card p-8 bg-white/5 border-brand-purple/30 flex flex-col justify-between group hover:border-brand-purple transition-all">
                 <div>
                   <div className="w-14 h-14 bg-brand-purple/20 flex items-center justify-center mb-6">
-                    <CreditCard className="w-7 h-7 text-brand-purple" />
+                    <Smartphone className="w-7 h-7 text-brand-purple" />
                   </div>
-                  <h4 className="text-2xl font-display font-bold uppercase tracking-tight mb-2">Stripe Secure</h4>
+                  <h4 className="text-2xl font-display font-bold uppercase tracking-tight mb-2">CashApp / PayPal</h4>
                   <p className="text-xs font-mono text-gray-500 uppercase tracking-widest leading-relaxed">
-                    Direct credit card payments via our secure portal.
+                    Direct peer-to-peer payments for fast project starts.
                   </p>
                 </div>
                 <div className="mt-8 pt-6 border-t border-white/10">
                   <span className="inline-block px-3 py-1 bg-brand-purple/10 text-brand-purple text-[10px] font-mono font-bold uppercase tracking-widest">
-                    Coming Soon
+                    Preferred Method
                   </span>
                 </div>
               </div>
@@ -1064,12 +1247,12 @@ export default function App() {
                   </div>
                   <h4 className="text-2xl font-display font-bold uppercase tracking-tight mb-2">Mobile Apps</h4>
                   <p className="text-xs font-mono text-gray-500 uppercase tracking-widest leading-relaxed">
-                    Fast & easy transfers via CashApp or PayPal.
+                    Venmo and other mobile payment solutions accepted.
                   </p>
                 </div>
                 <div className="mt-8 pt-6 border-t border-white/10">
                   <span className="inline-block px-3 py-1 bg-brand-accent/10 text-brand-accent text-[10px] font-mono font-bold uppercase tracking-widest">
-                    Primary Method
+                    Flexible
                   </span>
                 </div>
               </div>
@@ -1113,6 +1296,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <FAQ />
 
       {/* Customer Support Section */}
       <section className="py-24 bg-brand-dark">
