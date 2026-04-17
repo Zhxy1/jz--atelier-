@@ -372,7 +372,7 @@ const FAQ = () => {
 const Comparison = () => {
   const points = [
     { feature: "Initial Cost", jz: "$997+", them: "$5,000+" },
-    { feature: "Monthly Fees", jz: "$0 (You Own It)", them: "$150–$300/mo" },
+    { feature: "Monthly Fees", jz: "$30–$60/mo (Optional)", them: "$150–$300/mo" },
     { feature: "Launch Speed", jz: "7–14 Days", them: "2–3 Months" },
     { feature: "Performance", jz: "99/100 Speed", them: "Bloated Templates" },
     { feature: "Risk", jz: "Free Demo First", them: "Pay Upfront" },
@@ -472,7 +472,7 @@ const Pricing = () => (
           </div>
           <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Professional</h3>
           <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$2,497</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $99/MO MAINTENANCE // NO REFUNDS</p>
+          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $60/MO MAINTENANCE // NO REFUNDS</p>
           <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-300">
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Multi-Page Business Site</li>
             <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Advanced SEO Indexing</li>
@@ -1383,7 +1383,7 @@ export default function App() {
                 {[
                   { label: "Custom Website", price: "$997+", color: "text-brand-red" },
                   { label: "Ad Campaigns", price: "$250+", color: "text-brand-accent" },
-                  { label: "Site Maintenance", price: "$99/MO", color: "text-brand-purple" }
+                  { label: "Site Maintenance", price: "$30–$60/MO", color: "text-brand-purple" }
                 ].map((item, i) => (
                   <div key={i} className="flex justify-between items-center">
                     <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">{item.label}</span>
