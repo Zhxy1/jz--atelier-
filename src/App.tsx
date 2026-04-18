@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { 
   CheckCircle2, 
@@ -26,10 +26,14 @@ import {
   CreditCard,
   Smartphone,
   MessageSquare,
-  Shield
+  Shield,
+  Send,
+  Bot,
+  User,
+  Loader2,
+  Minimize2
 } from 'lucide-react';
-
-import { ChatBot } from './components/ChatBot';
+import { GoogleGenAI } from "@google/genai";
 
 // --- Components ---
 
@@ -534,6 +538,234 @@ const Pricing = () => (
     </div>
   </section>
 );
+
+const SYSTEM_INSTRUCTION = `
+You are the AI Customer Support Agent for JZ Atelier, a premium digital strategy and web design studio.
+Your goal is to be professional, direct, and helpful, reflecting the "rough professional" and high-performance brand identity.
+
+Key Business Information:
+- Name: JZ Atelier
+- Services: 
+  * Custom Website Design: Starts at $997. Includes mobile optimization, SEO, and high-converting forms.
+  * Ad Campaigns: Starts at $250. We launch targeted ads within 24-48 hours.
+  * Site Maintenance: $30-$60/month for full site management and updates.
+- Ad Packages:
+  * Starter Ads ($250): Includes 1 ad, basic targeting. Note: There is a $0.20 fee per view, capped at 1000 views.
+  * Advanced Ads ($450): Includes 3 ads, enhanced targeting.
+  * Elite Package ($850): Includes 5 ads, advanced setup, full market dominance.
+- Payments: We accept CashApp and PayPal as primary methods.
+- Capacity: We only accept 5 projects per month to ensure premium quality. The banner shows current availability (usually 1-5 spots left depending on the date).
+- Comparison Points:
+  * Cost: We are $997+ vs Generic Agencies at $5,000+.
+  * Fees: Optional $30-$60/mo maintenance (you own the code) vs $150-$300/mo elsewhere.
+  * Speed: 7-14 days vs 2-3 months.
+  * Risk: Free demo first vs paying upfront.
+- Policies:
+  * NO REFUNDS: Due to the custom nature of our digital builds and immediate resource allocation, we have a strict NO REFUND policy.
+  * IRONCLAD GUARANTEE: Clients see a demo BEFORE committing to the final build. If they don't like the demo, they don't pay for the full build.
+  * OWNERSHIP: Clients own 100% of the code and assets upon final payment.
+- The Math of Failure: A slow site (1% conversion) vs JZ Atelier (5%+ conversion) means a business with 1,000 visitors loses 40+ customers every month by doing nothing.
+- Philosophy: We build "Digital Weapons" that "Kill The Competition". We focus on performance (0.8s load time) and ROI, not just "pretty" pictures.
+- Founders: 
+  * Zander Lewis: Owner & Lead Designer. He started JZ Atelier to stop local businesses from getting ripped off by slow, expensive agency templates.
+  * Jamis Ward: Co-Owner & Strategic Partner. Partner in driving digital strategy and high-performance builds.
+- FAQ Knowledge:
+  * Ownership: Clients own 100% of the site, code, and domain after final payment.
+  * Timeline: Starter sites take 7-14 days. Agency builds take 4-6 weeks.
+  * Risk-Free: If they don't like the initial demo, we pivot or they walk away.
+  * Hosting/Domain: We handle setup. Hosting is on Vercel's edge network.
+- Support: For direct human support, clients can text 319-406-2965 or email zanderlewis80@gmail.com. Remind them it is TEXT ONLY for the phone line.
+- Philosophy: We build websites that "Kill The Competition". We focus on direct results and no fluff.
+
+Guidelines:
+- Keep responses concise and impactful.
+- If a user wants a demo, direct them to the "Get Free Demo" form on the website.
+- If they have technical issues, suggest texting the support line or emailing the team.
+- Always maintain a premium, confident tone.
+`;
+
+interface Message {
+  role: 'user' | 'model';
+  text: string;
+}
+
+const ChatBot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'model', text: "Welcome to JZ Atelier. How can I help you dominate your market today?" }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const handleSend = async () => {
+    if (!input.trim() || isLoading) return;
+
+    const userMessage = input.trim();
+    setInput('');
+    setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
+    setIsLoading(true);
+
+    try {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        setMessages(prev => [...prev, { 
+          role: 'model', 
+          text: "AI service is currently not configured for this deployment. Please ensure GEMINI_API_KEY is set in the environment. For immediate assistance, text 319-406-2965." 
+        }]);
+        setIsLoading(false);
+        return;
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
+      
+      const history = messages.map(m => ({
+        role: m.role,
+        parts: [{ text: m.text }]
+      }));
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: [
+          ...history,
+          { role: 'user', parts: [{ text: userMessage }] }
+        ],
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTION,
+          temperature: 0.7,
+        }
+      });
+
+      const aiText = response.text || "I'm sorry, I couldn't process that. Please try again, text 319-406-2965, or email our support team.";
+      setMessages(prev => [...prev, { role: 'model', text: aiText }]);
+    } catch (error) {
+      console.error("ChatBot Error:", error);
+      setMessages(prev => [...prev, { role: 'model', text: "Connection error. Please check your network, text 319-406-2965, or email zanderlewis80@gmail.com for direct help." }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="fixed bottom-8 md:bottom-[104px] right-8 z-[110] flex flex-col items-end">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: 0,
+              height: isMinimized ? '64px' : 'min(500px, 70vh)'
+            }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="w-[calc(100vw-32px)] md:w-[400px] bg-brand-dark border-2 border-brand-purple shadow-[10px_10px_0px_0px_rgba(168,85,247,0.2)] mb-4 overflow-hidden flex flex-col"
+          >
+            {/* Header */}
+            <div className="p-4 bg-brand-purple flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <Bot className="w-5 h-5 text-white" />
+                <span className="font-display font-bold text-white uppercase tracking-widest">JZ AI Support</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button 
+                   onClick={() => setIsMinimized(!isMinimized)}
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <Minimize2 className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {!isMinimized && (
+              <>
+                {/* Messages */}
+                <div 
+                  ref={scrollRef}
+                  className="flex-grow overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-brand-purple/20"
+                >
+                  {messages.map((m, i) => (
+                    <div 
+                      key={i} 
+                      className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div className={`max-w-[80%] p-3 font-mono text-xs uppercase tracking-tight ${
+                        m.role === 'user' 
+                          ? 'bg-brand-purple text-white border-l-4 border-white/20' 
+                          : 'bg-white/5 text-gray-300 border-l-4 border-brand-purple'
+                      }`}>
+                        <div className="flex items-center gap-2 mb-1 opacity-50">
+                          {m.role === 'user' ? <User className="w-3 h-3" /> : <Bot className="w-3 h-3" />}
+                          <span>{m.role === 'user' ? 'CLIENT' : 'ATELIER AI'}</span>
+                        </div>
+                        {m.text}
+                      </div>
+                    </div>
+                  ))}
+                  {isLoading && (
+                    <div className="flex justify-start">
+                      <div className="bg-white/5 p-3 border-l-4 border-brand-purple">
+                        <Loader2 className="w-4 h-4 text-brand-purple animate-spin" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Input */}
+                <div className="p-4 border-t border-white/10 bg-brand-gray">
+                  <form 
+                    onSubmit={(e) => { e.preventDefault(); handleSend(); }}
+                    className="flex gap-2"
+                  >
+                    <input 
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Type your message..."
+                      className="flex-grow bg-white/5 border border-white/10 px-4 py-2 focus:outline-none focus:border-brand-purple font-mono text-xs text-white uppercase"
+                    />
+                    <button 
+                      type="submit"
+                      disabled={isLoading}
+                      className="bg-brand-purple text-white p-2 hover:bg-white hover:text-black transition-all disabled:opacity-50"
+                    >
+                      <Send className="w-5 h-5" />
+                    </button>
+                  </form>
+                </div>
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => {
+          setIsOpen(true);
+          setIsMinimized(false);
+        }}
+        className={`w-16 h-16 bg-brand-purple flex items-center justify-center shadow-[5px_5px_0px_0px_rgba(0,0,0,0.3)] transition-all ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      >
+        <MessageSquare className="w-8 h-8 text-white" />
+      </motion.button>
+    </div>
+  );
+};
 
 export default function App() {
   const [rating, setRating] = useState(5);
