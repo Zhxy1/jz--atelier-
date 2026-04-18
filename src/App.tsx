@@ -568,12 +568,13 @@ Key Business Information:
 - Name: JZ Atelier
 - Services: 
   * Custom Website Design: Starts at $499. Includes mobile optimization, SEO, and professional builds.
-  * Ad Campaigns: Starts at $250. We launch targeted ads within 24-48 hours.
+  * Ad Campaigns: Starts at $150. We launch targeted ads within 24-48 hours.
   * Site Maintenance: $30-$60/month for full site management and updates.
 - Ad Packages:
-  * Starter Ads ($250): Includes 1 ad, basic targeting. Note: There is a $0.20 fee per view, capped at 1000 views.
-  * Advanced Ads ($450): Includes 3 ads, enhanced targeting.
-  * Elite Package ($850): Includes 5 ads, advanced setup, full market dominance.
+  * Starter Ads ($150): Includes 1 ad, basic targeting. Note: There is a $0.20 fee per view, capped at 1000 views.
+  * Advanced Ads ($350): Includes 3 ads, enhanced targeting.
+  * Elite Package ($650): Includes 5 ads, advanced setup.
+  * Premium Ads ($1450): 10 ads, targeted audience, full market dominance.
 - Payments: We accept CashApp and PayPal as primary methods.
 - Capacity: We only accept 5 projects per month to ensure premium quality. The banner shows current availability (usually 1-5 spots left depending on the date).
 - Comparison Points:
@@ -582,7 +583,8 @@ Key Business Information:
   * Speed: 5-14 days vs 2-3 months.
   * Risk: Free demo first vs paying upfront.
 - Policies:
-  * NO REFUNDS: Due to the custom nature of our digital builds and immediate resource allocation, we have a strict NO REFUND policy.
+  * NO REFUNDS: Due to the custom nature of our digital builds and immediate resource allocation, we have a strict NO REFUND policy on both websites and ads.
+  * AD GUARANTEE: We do not guarantee a specific conversion or "person rate". However, we guarantee each ad will reach a minimum of 1000 viewers. Campaigns are considered complete once the 1000-viewer threshold is met per ad.
   * IRONCLAD GUARANTEE: Clients see a demo BEFORE committing to the final build. If they don't like the demo, they don't pay for the full build.
   * OWNERSHIP: Clients own 100% of the code and assets upon final payment.
 - The Math of Failure: A slow site (1% conversion) vs JZ Atelier (5%+ conversion) means a business with 1,000 visitors loses 40+ customers every month by doing nothing.
@@ -1150,64 +1152,52 @@ export default function App() {
             </div>
           </motion.div>
 
-          {/* Section 4 & 5: Pricing & Why Ads Work */}
-          <div className="grid lg:grid-cols-3 gap-12 mb-24">
-            <div className="lg:col-span-2 grid md:grid-cols-3 gap-6">
-              {[
-                { name: "Starter Ads", price: "$250", fee: "Service Fee", features: ["Includes 1 ad", "Basic targeting", "$0.20 fee per view", "Caps at 1000 views"] },
-                { name: "Advanced Ads", price: "$450", fee: "One-time", features: ["Enhanced targeting", "Includes 3 ads", "Best for local growth"], popular: true },
-                { name: "Elite Package", price: "$850", fee: "One-time", features: ["5 ads included", "Advanced setup", "Full market dominance"] }
-              ].map((pkg, idx) => (
-                <div key={idx} className={`rough-card p-6 flex flex-col relative ${pkg.popular ? 'border-brand-red bg-brand-red/5 scale-105 z-10' : 'border-white/10'}`}>
-                  {pkg.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-red text-white text-[10px] font-mono font-black uppercase tracking-widest px-4 py-1 whitespace-nowrap">
-                      Most Popular // Best Value
-                    </div>
-                  )}
-                  <h4 className="text-[10px] font-mono font-bold text-gray-500 mb-2 uppercase tracking-widest">{pkg.name}</h4>
-                  <div className="text-4xl font-display font-bold mb-1 tracking-tighter">{pkg.price}</div>
-                  <p className="text-[10px] font-mono text-brand-red font-bold uppercase tracking-widest mb-6">{pkg.fee}</p>
-                  <ul className="space-y-3 mb-8 flex-grow">
-                    {pkg.features.map((f, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-tight">
-                        <CheckCircle2 className={`w-3 h-3 ${f.includes('$0.20') ? 'text-gray-600' : 'text-brand-red'}`} /> 
-                        <span className={f.includes('$0.20') ? 'text-gray-500 line-through' : ''}>{f}</span>
-                        {f.includes('$0.20') && <span className="text-brand-red font-bold ml-1">REQUIRED</span>}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              <div className="md:col-span-3 p-6 bg-white/5 border-l-4 border-brand-red flex flex-col md:flex-row justify-between items-center gap-4">
-                <div>
-                  <h4 className="text-xl font-display font-bold uppercase tracking-tight">Additional Ad Spend</h4>
-                  <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">Ad spend is based on performance and audience reach.</p>
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-display font-bold text-brand-red">$0.20 PER VIEWER</div>
-                  <p className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Performance-based cost (Starter Cap: 1000)</p>
-                </div>
+          {/* Section 4 & 5: Pricing & Info */}
+          <div className="grid lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { name: "Starter Ads", price: "$150", fee: "Service Fee", features: ["Includes 1 ad", "Basic targeting", "$0.20 fee per view", "Hits 1000 viewers min."] },
+              { name: "Advanced Ads", price: "$350", fee: "One-time", features: ["3 ads included", "Enhanced targeting", "Market growth", "1000 viewers per ad"], popular: true },
+              { name: "Elite Package", price: "$650", fee: "One-time", features: ["5 ads included", "Advanced setup", "Strategic launch", "Professional tracking"] },
+              { name: "Premium Ads", price: "$1,450", fee: "Enterprise", features: ["10 ads included", "Targeted audience", "Market dominance", "Premium priority"] }
+            ].map((pkg, idx) => (
+              <div key={idx} className={`rough-card p-6 flex flex-col relative ${pkg.popular ? 'border-brand-red bg-brand-red/5 scale-105 z-10' : 'border-white/10'}`}>
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-red text-white text-[10px] font-mono font-black uppercase tracking-widest px-4 py-1 whitespace-nowrap">
+                    Most Popular // Best Value
+                  </div>
+                )}
+                <h4 className="text-[10px] font-mono font-bold text-gray-500 mb-2 uppercase tracking-widest">{pkg.name}</h4>
+                <div className="text-4xl font-display font-bold mb-1 tracking-tighter">{pkg.price}</div>
+                <p className="text-[10px] font-mono text-brand-red font-bold uppercase tracking-widest mb-6">{pkg.fee}</p>
+                <ul className="space-y-3 mb-8 flex-grow">
+                  {pkg.features.map((f, fIdx) => (
+                    <li key={fIdx} className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-tight">
+                      <CheckCircle2 className={`w-3 h-3 ${f.includes('$0.20') ? 'text-gray-600' : 'text-brand-red'}`} /> 
+                      <span className={f.includes('$0.20') ? 'text-gray-500 line-through' : ''}>{f}</span>
+                      {f.includes('$0.20') && <span className="text-brand-red font-bold ml-1">REQUIRED</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-24">
+            <div className="md:col-span-2 p-8 bg-white/5 border-l-4 border-brand-red flex flex-col md:flex-row justify-between items-center gap-8">
+              <div>
+                <h4 className="text-2xl font-display font-bold uppercase tracking-tight">Additional Ad Spend</h4>
+                <p className="text-sm font-mono text-gray-500 uppercase tracking-widest">Ad spend is based on performance and audience reach.</p>
+              </div>
+              <div className="text-right">
+                <div className="text-4xl font-display font-bold text-brand-red">$0.20 PER VIEWER</div>
+                <p className="text-xs font-mono text-gray-400 uppercase tracking-widest">Performance-based cost (Hits 1000 views per ad)</p>
               </div>
             </div>
-
-            <div className="rough-card p-8 bg-brand-gray/50 border-white/5">
-              <h4 className="text-2xl font-display font-bold mb-8 uppercase tracking-tight">Why Our Ads Work</h4>
-              <ul className="space-y-6">
-                {[
-                  "Targeted local audience",
-                  "Fast launch (24–48 hours)",
-                  "Built for small businesses",
-                  "Designed to drive real clicks",
-                  "Ongoing optimization available"
-                ].map((point, idx) => (
-                  <li key={idx} className="flex items-center gap-4 text-xs font-mono text-gray-300 uppercase tracking-widest">
-                    <div className="w-8 h-8 bg-brand-red/10 flex items-center justify-center border border-brand-red/20 shrink-0">
-                      <MousePointerClick className="w-4 h-4 text-brand-red" />
-                    </div>
-                    {point}
-                  </li>
-                ))}
-              </ul>
+            <div className="rough-card p-8 bg-brand-gray/50 border-white/5 flex flex-col justify-center">
+              <h4 className="text-xl font-display font-bold mb-4 uppercase tracking-tight">Why Our Ads Work</h4>
+              <p className="text-xs font-mono text-gray-400 uppercase tracking-widest leading-relaxed">
+                We don't just "run" ads. We target local pros in your area who are actually looking for your services. No fluff, just traffic.
+              </p>
             </div>
           </div>
 
@@ -1642,7 +1632,7 @@ export default function App() {
                 {[
                   { label: "Starter Web", price: "$499+", color: "text-brand-red" },
                   { label: "Pro/Business", price: "$999+", color: "text-brand-purple" },
-                  { label: "Ad Campaigns", price: "$250+", color: "text-brand-accent" },
+                  { label: "Ad Campaigns", price: "$150+", color: "text-brand-accent" },
                   { label: "Site Maintenance", price: "$30–$60/MO", color: "text-brand-purple" }
                 ].map((item, i) => (
                   <div key={i} className="flex justify-between items-center">
@@ -1759,20 +1749,36 @@ export default function App() {
                 <h2 className="text-4xl font-display font-bold text-white mb-8 uppercase tracking-tighter">Privacy Policy & Terms</h2>
                 <div className="space-y-8 text-gray-400">
                   <section>
-                    <h3 className="text-white font-bold mb-2">1. Data Collection</h3>
+                    <h3 className="text-white font-bold mb-2 uppercase tracking-tighter text-sm">1. Data Collection</h3>
                     <p>We collect information provided via our contact forms to facilitate service demos and project communication. We do not sell your data to third parties.</p>
                   </section>
                   <section className="border-l-4 border-brand-red pl-6 bg-brand-red/5 py-4">
-                    <h3 className="text-brand-red font-bold mb-2">2. NO REFUND POLICY</h3>
-                    <p className="text-white">Due to the custom nature of our digital products and the immediate allocation of engineering resources, JZ Atelier operates a strict <span className="font-bold">NO REFUND</span> policy. All sales are final once the project agreement is signed and work begins.</p>
+                    <h3 className="text-brand-red font-bold mb-2 uppercase tracking-tighter text-sm">2. NO REFUND POLICY</h3>
+                    <p className="text-white leading-relaxed">Due to the custom nature of our digital products and the immediate allocation of engineering resources, JZ Atelier operates a strict <span className="font-bold">NO REFUND</span> policy. All sales for website builds and ad campaigns are final once the project agreement is signed or payment is processed. Work begins immediately upon receipt of funds.</p>
+                  </section>
+                  <section className="border-l-4 border-brand-accent pl-6 bg-brand-accent/5 py-4">
+                    <h3 className="text-brand-accent font-bold mb-2 uppercase tracking-tighter text-sm">3. AD PERFORMANCE & GUARANTEES</h3>
+                    <ul className="space-y-4 text-white">
+                      <li>• <span className="font-bold">Viewer Guarantee:</span> We guarantee that each ad campaign will reach a minimum of 1,000 unique viewers per ad. A campaign is considered complete once this threshold is met.</li>
+                      <li>• <span className="font-bold">No Conversion Rate Guarantee:</span> JZ Atelier does not guarantee a specific "person rate" (conversion rate, click-through rate, or revenue generation). Our responsibility is to deliver targeted traffic; the client's business model and landing page performance dictate final results.</li>
+                      <li>• <span className="font-bold">Service Termination:</span> Ad services will automatically cease for a targeted campaign once the contractually agreed viewer threshold is reached.</li>
+                    </ul>
                   </section>
                   <section>
-                    <h3 className="text-white font-bold mb-2">3. Service Agreement</h3>
-                    <p>By requesting a demo or purchasing a package, you agree to our tactical approach to web design and marketing. We prioritize performance and conversion over aesthetic fluff.</p>
+                    <h3 className="text-white font-bold mb-2 uppercase tracking-tighter text-sm">4. LIMITATION OF LIABILITY</h3>
+                    <p className="italic text-xs">TO THE MAXIMUM EXTENT PERMITTED BY LAW, JZ ATELIER AND ITS FOUNDERS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE OR INABILITY TO USE OUR SERVICES. THE CLIENT AGREES THAT TOTAL LIABILITY TO THE CLIENT SHALL NOT EXCEED THE TOTAL AMOUNT PAID FOR THE SERVICE IN QUESTION.</p>
                   </section>
                   <section>
-                    <h3 className="text-white font-bold mb-2">4. Ownership</h3>
-                    <p>Clients retain 100% ownership of their website code, domain, and assets upon final payment of the project invoice.</p>
+                    <h3 className="text-white font-bold mb-2 uppercase tracking-tighter text-sm">5. INDEMNIFICATION</h3>
+                    <p>The client agrees to defend, indemnify, and hold harmless JZ Atelier from any and all claims, damages, costs, and expenses (including attorney fees) arising from the client's use of the delivered assets or ad campaigns.</p>
+                  </section>
+                  <section>
+                    <h3 className="text-white font-bold mb-2 uppercase tracking-tighter text-sm">6. DISPUTE RESOLUTION</h3>
+                    <p>Any disputes arising from these terms shall be settled through binding arbitration. Both parties agree to waive their right to a jury trial or to participate in a class action lawsuit.</p>
+                  </section>
+                  <section>
+                    <h3 className="text-white font-bold mb-2 uppercase tracking-tighter text-sm">7. OWNERSHIP</h3>
+                    <p>Clients retain 100% ownership of their website code, domain, and assets upon final payment of the project invoice. JZ Atelier retains the right to use site images for portfolio and marketing purposes unless otherwise agreed in writing.</p>
                   </section>
                 </div>
                 <button 
