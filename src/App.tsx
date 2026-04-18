@@ -593,7 +593,7 @@ Key Business Information:
   * Professional ($999): Multi-page, SEO focus, custom contact engine.
   * Business ($2,499): Advanced optimization, market analysis, priority support.
   * Enterprise ($4,999+): Custom app logic, full branding, 24/7 monitoring.
-- Philosophy: We build "Digital Weapons" that "Kill The Competition". We focus on performance (0.8s load time) and ROI, not just "pretty" pictures.
+- Philosophy: We build "Digital Weapons" that "Dominate Your Market". We focus on performance (0.8s load time) and ROI, not just "pretty" pictures.
 - Founders: 
   * Zander Lewis: Owner & Lead Designer. He started JZ Atelier to stop local businesses from getting ripped off by slow, expensive agency templates.
   * Jamis Ward: Co-Owner & Strategic Partner. Partner in driving digital strategy and high-performance builds.
@@ -603,7 +603,7 @@ Key Business Information:
   * Risk-Free: If they don't like the initial demo, we pivot or they walk away.
   * Hosting/Domain: We handle setup. Hosting is on Vercel's edge network.
 - Support: For direct human support, clients can text 319-406-2965 or email zanderlewis80@gmail.com. Remind them it is TEXT ONLY for the phone line.
-- Philosophy: We build websites that "Kill The Competition". We focus on direct results and no fluff.
+- Philosophy: We build websites that "Outperform Every Competitor". We focus on direct results and no fluff.
 
 Guidelines:
 - Keep responses concise and impactful.
@@ -843,7 +843,7 @@ export default function App() {
             </span>
             <h1 className="text-5xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter mb-8 leading-[0.9] uppercase">
               Websites That <br />
-              <span className="gradient-text glitch-text" data-text="Kill The Competition">Kill The Competition</span>
+              <span className="gradient-text glitch-text" data-text="Dominate Your Market">Dominate Your Market</span>
             </h1>
             <p className="text-sm md:text-xl text-gray-400 font-mono max-w-3xl mx-auto mb-12 leading-relaxed uppercase tracking-tight">
               Custom builds for local pros starting at <span className="text-brand-red font-bold">$499</span>. 
@@ -1812,3 +1812,4 @@ export default function App() {
     </div>
   );
 }
+
