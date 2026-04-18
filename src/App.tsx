@@ -1144,9 +1144,9 @@ export default function App() {
                   <ul className="space-y-3 mb-8 flex-grow">
                     {pkg.features.map((f, fIdx) => (
                       <li key={fIdx} className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-tight">
-                        <CheckCircle2 className={`w-3 h-3 ${f.includes('$0.10') ? 'text-gray-600' : 'text-brand-red'}`} /> 
-                        <span className={f.includes('$0.10') ? 'text-gray-500 line-through' : ''}>{f}</span>
-                        {f.includes('$0.10') && <span className="text-brand-red font-bold ml-1">REQUIRED</span>}
+                        <CheckCircle2 className={`w-3 h-3 ${f.includes('$0.20') ? 'text-gray-600' : 'text-brand-red'}`} /> 
+                        <span className={f.includes('$0.20') ? 'text-gray-500 line-through' : ''}>{f}</span>
+                        {f.includes('$0.20') && <span className="text-brand-red font-bold ml-1">REQUIRED</span>}
                       </li>
                     ))}
                   </ul>
