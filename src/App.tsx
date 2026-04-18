@@ -375,9 +375,9 @@ const FAQ = () => {
 
 const Comparison = () => {
   const points = [
-    { feature: "Initial Cost", jz: "$997+", them: "$5,000+" },
+    { feature: "Initial Cost", jz: "$499+", them: "$5,000+" },
     { feature: "Monthly Fees", jz: "$30–$60/mo (Optional)", them: "$150–$300/mo" },
-    { feature: "Launch Speed", jz: "7–14 Days", them: "2–3 Months" },
+    { feature: "Launch Speed", jz: "5–14 Days", them: "2–3 Months" },
     { feature: "Performance", jz: "99/100 Speed", them: "Bloated Templates" },
     { feature: "Risk", jz: "Free Demo First", them: "Pay Upfront" },
   ];
@@ -438,26 +438,25 @@ const Pricing = () => (
         <h2 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter">Service Tiers</h2>
       </div>
       
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Starter */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
+          className="border border-white/10 p-8 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
         >
-          <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Starter</h3>
-          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$997</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">ONE-TIME PAYMENT // NO REFUNDS</p>
-          <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Custom Website</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Mobile & Tablet Optimized</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> High-Converting Forms</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Basic SEO Setup</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Vercel Deployment</li>
+          <h3 className="text-xl font-display font-bold uppercase mb-2 tracking-tight">Starter</h3>
+          <div className="text-4xl font-display font-bold mb-1 tracking-tighter">$499</div>
+          <p className="text-[9px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-6">ONE-TIME // NO REFUNDS</p>
+          <ul className="space-y-4 mb-8 flex-grow font-mono text-[9px] uppercase tracking-[0.2em] text-gray-500">
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> One-Page Build</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> 5-Day Fast Launch</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> Mobile Optimized</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> Basic SEO Setup</li>
           </ul>
           <div className="flex flex-col gap-3">
-            <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
+            <a href="#contact" className="border border-white/20 py-3 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-xs">
               Select Starter
             </a>
           </div>
@@ -469,49 +468,71 @@ const Pricing = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="border-2 border-white p-10 flex flex-col relative scale-105 bg-white/5 z-10 shadow-[20px_20px_0px_0px_rgba(168,85,247,0.1)]"
+          className="border-2 border-white p-8 flex flex-col relative scale-105 bg-white/5 z-10 shadow-[15px_15px_0px_0px_rgba(168,85,247,0.1)]"
         >
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-purple text-white px-6 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
-            Most Popular
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-purple text-white px-4 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
+            Growth Tier
           </div>
-          <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Professional</h3>
-          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$2,497</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">+ $60/MO MAINTENANCE // NO REFUNDS</p>
-          <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-300">
-            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Multi-Page Business Site</li>
-            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Advanced SEO Indexing</li>
-            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Speed Optimization</li>
-            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Custom Contact Engine</li>
-            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-purple" /> Priority Support</li>
+          <h3 className="text-xl font-display font-bold uppercase mb-2 tracking-tight">Professional</h3>
+          <div className="text-4xl font-display font-bold mb-1 tracking-tighter">$999</div>
+          <p className="text-[9px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-6">+ $30/MO MAINTENANCE</p>
+          <ul className="space-y-4 mb-8 flex-grow font-mono text-[9px] uppercase tracking-[0.2em] text-gray-300">
+            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-brand-purple" /> Multi-Page Site</li>
+            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-brand-purple" /> Custom Forms</li>
+            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-brand-purple" /> SEO Indexing</li>
+            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-brand-purple" /> Speed Optimization</li>
           </ul>
           <div className="flex flex-col gap-3">
-            <a href="#contact" className="bg-white text-black py-4 text-center font-display font-bold hover:bg-brand-purple hover:text-white transition-all uppercase tracking-widest text-sm">
-              Choose Professional
+            <a href="#contact" className="bg-white text-black py-3 text-center font-display font-bold hover:bg-brand-purple hover:text-white transition-all uppercase tracking-widest text-xs">
+              Select Pro
             </a>
           </div>
         </motion.div>
 
-        {/* Agency */}
+        {/* Business */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="border border-white/10 p-10 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
+          className="border border-white/10 p-8 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
         >
-          <h3 className="text-2xl font-display font-bold uppercase mb-2 tracking-tight">Agency</h3>
-          <div className="text-5xl font-display font-bold mb-1 tracking-tighter">$4,997+</div>
-          <p className="text-[10px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-8">CUSTOM ENTERPRISE FEES // NO REFUNDS</p>
-          <ul className="space-y-5 mb-12 flex-grow font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Custom App Logic</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Brand Identity</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> 24/7 Priority Support</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Unlimited Revisions</li>
-            <li className="flex items-center gap-3"><div className="w-1 h-1 bg-brand-purple" /> Full Marketing Suite</li>
+          <h3 className="text-xl font-display font-bold uppercase mb-2 tracking-tight">Business</h3>
+          <div className="text-4xl font-display font-bold mb-1 tracking-tighter">$2,499</div>
+          <p className="text-[9px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-6">+ $60/MO MAINTENANCE</p>
+          <ul className="space-y-4 mb-8 flex-grow font-mono text-[9px] uppercase tracking-[0.2em] text-gray-500">
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-purple" /> Market Dominance</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-purple" /> Adv. Analytics</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-purple" /> Priority Support</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-purple" /> Full Ads Integration</li>
           </ul>
           <div className="flex flex-col gap-3">
-            <a href="#contact" className="border border-white/20 py-4 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm">
-              Select Agency
+            <a href="#contact" className="border border-white/20 py-3 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-xs">
+              Select Business
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Enterprise */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="border border-white/10 p-8 flex flex-col hover:border-brand-purple/50 transition-all duration-500 bg-white/[0.02]"
+        >
+          <h3 className="text-xl font-display font-bold uppercase mb-2 tracking-tight">Enterprise</h3>
+          <div className="text-4xl font-display font-bold mb-1 tracking-tighter">$4,999+</div>
+          <p className="text-[9px] font-mono text-brand-purple font-bold uppercase tracking-widest mb-6">CUSTOM SOLUTIONS</p>
+          <ul className="space-y-4 mb-8 flex-grow font-mono text-[9px] uppercase tracking-[0.2em] text-gray-500">
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-purple" /> Custom Logic</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> Full Brand Suite</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> 24/7 Monitoring</li>
+            <li className="flex items-center gap-2"><div className="w-1 h-1 bg-brand-red" /> Marketing Strategy</li>
+          </ul>
+          <div className="flex flex-col gap-3">
+            <a href="#contact" className="border border-white/20 py-3 text-center font-display font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-xs">
+              Select Enterprise
             </a>
           </div>
         </motion.div>
@@ -546,7 +567,7 @@ Your goal is to be professional, direct, and helpful, reflecting the "rough prof
 Key Business Information:
 - Name: JZ Atelier
 - Services: 
-  * Custom Website Design: Starts at $997. Includes mobile optimization, SEO, and high-converting forms.
+  * Custom Website Design: Starts at $499. Includes mobile optimization, SEO, and professional builds.
   * Ad Campaigns: Starts at $250. We launch targeted ads within 24-48 hours.
   * Site Maintenance: $30-$60/month for full site management and updates.
 - Ad Packages:
@@ -556,22 +577,27 @@ Key Business Information:
 - Payments: We accept CashApp and PayPal as primary methods.
 - Capacity: We only accept 5 projects per month to ensure premium quality. The banner shows current availability (usually 1-5 spots left depending on the date).
 - Comparison Points:
-  * Cost: We are $997+ vs Generic Agencies at $5,000+.
+  * Cost: We are $499+ vs Generic Agencies at $5,000+.
   * Fees: Optional $30-$60/mo maintenance (you own the code) vs $150-$300/mo elsewhere.
-  * Speed: 7-14 days vs 2-3 months.
+  * Speed: 5-14 days vs 2-3 months.
   * Risk: Free demo first vs paying upfront.
 - Policies:
   * NO REFUNDS: Due to the custom nature of our digital builds and immediate resource allocation, we have a strict NO REFUND policy.
   * IRONCLAD GUARANTEE: Clients see a demo BEFORE committing to the final build. If they don't like the demo, they don't pay for the full build.
   * OWNERSHIP: Clients own 100% of the code and assets upon final payment.
 - The Math of Failure: A slow site (1% conversion) vs JZ Atelier (5%+ conversion) means a business with 1,000 visitors loses 40+ customers every month by doing nothing.
+- Tier Knowledge:
+  * Starter ($499): One-page site, fast 5-day launch, professional presence.
+  * Professional ($999): Multi-page, SEO focus, custom contact engine.
+  * Business ($2,499): Advanced optimization, market analysis, priority support.
+  * Enterprise ($4,999+): Custom app logic, full branding, 24/7 monitoring.
 - Philosophy: We build "Digital Weapons" that "Kill The Competition". We focus on performance (0.8s load time) and ROI, not just "pretty" pictures.
 - Founders: 
   * Zander Lewis: Owner & Lead Designer. He started JZ Atelier to stop local businesses from getting ripped off by slow, expensive agency templates.
   * Jamis Ward: Co-Owner & Strategic Partner. Partner in driving digital strategy and high-performance builds.
 - FAQ Knowledge:
   * Ownership: Clients own 100% of the site, code, and domain after final payment.
-  * Timeline: Starter sites take 7-14 days. Agency builds take 4-6 weeks.
+  * Timeline: Starter sites take 5-14 days. Agency builds take 4-6 weeks.
   * Risk-Free: If they don't like the initial demo, we pivot or they walk away.
   * Hosting/Domain: We handle setup. Hosting is on Vercel's edge network.
 - Support: For direct human support, clients can text 319-406-2965 or email zanderlewis80@gmail.com. Remind them it is TEXT ONLY for the phone line.
@@ -818,7 +844,7 @@ export default function App() {
               <span className="gradient-text glitch-text" data-text="Kill The Competition">Kill The Competition</span>
             </h1>
             <p className="text-sm md:text-xl text-gray-400 font-mono max-w-3xl mx-auto mb-12 leading-relaxed uppercase tracking-tight">
-              Custom builds for local pros starting at <span className="text-brand-red font-bold">$997</span>. 
+              Custom builds for local pros starting at <span className="text-brand-red font-bold">$499</span>. 
               Built to dominate your local market.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -1516,9 +1542,10 @@ export default function App() {
                   name="plan"
                   className="w-full bg-white/5 border-2 border-white/10 px-4 py-4 focus:outline-none focus:border-brand-red transition-colors appearance-none font-mono text-sm uppercase tracking-widest"
                 >
-                  <option className="bg-brand-gray">Starter ($997)</option>
-                  <option className="bg-brand-gray">Professional ($2,497)</option>
-                  <option className="bg-brand-gray">Agency ($4,997+)</option>
+                  <option className="bg-brand-gray">Starter ($499)</option>
+                  <option className="bg-brand-gray">Professional ($999)</option>
+                  <option className="bg-brand-gray">Business ($2,499)</option>
+                  <option className="bg-brand-gray">Enterprise ($4,999+)</option>
                   <option className="bg-brand-gray">Not Sure Yet</option>
                 </select>
               </div>
@@ -1613,7 +1640,8 @@ export default function App() {
               </h3>
               <div className="space-y-6 flex-grow">
                 {[
-                  { label: "Custom Website", price: "$997+", color: "text-brand-red" },
+                  { label: "Starter Web", price: "$499+", color: "text-brand-red" },
+                  { label: "Pro/Business", price: "$999+", color: "text-brand-purple" },
                   { label: "Ad Campaigns", price: "$250+", color: "text-brand-accent" },
                   { label: "Site Maintenance", price: "$30–$60/MO", color: "text-brand-purple" }
                 ].map((item, i) => (
