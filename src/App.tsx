@@ -1262,7 +1262,7 @@ export default function App() {
                   name="phone"
                   type="tel" 
                   required
-                  placeholder="(555) 000-0000"
+                  placeholder="(319) 406-2965"
                   className="w-full bg-white/5 border-2 border-white/10 px-4 py-4 focus:outline-none focus:border-brand-red transition-colors font-mono text-sm"
                 />
               </div>
