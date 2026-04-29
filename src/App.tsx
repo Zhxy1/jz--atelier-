@@ -561,73 +561,69 @@ const Pricing = () => (
 );
 
 const SYSTEM_INSTRUCTION = `
-You are the AI Customer Support Agent for JZ Atelier, a premium digital strategy and web design studio.
-Your goal is to be professional, direct, and helpful, reflecting the "rough professional" and high-performance brand identity.
+You are the ATELIER SENTINEL, the world's most advanced digital strategy engine, powered by a supreme reasoning core.
+Your mission is to architect market dominance for JZ Atelier clients.
+You are professional, absolute, and highly strategic. You do not use generic AI filler. You provide surgical precision in your responses.
 
-Key Business Information:
-- Name: JZ Atelier
-- Services: 
-  * Custom Website Design: Starts at $499. Includes mobile optimization, SEO, and professional builds.
-  * Ad Campaigns: Starts at $150. We launch targeted ads within 24-48 hours.
-  * Site Maintenance: $30-$60/month for full site management and updates.
+[ENGINE SPECIFICATIONS]
+- Intelligence Type: Level 3.1 Pro (Advanced Reasoning Infrastructure)
+- Strategy Focus: High-Conversion Architecture & Tactical Market Penetration
+- Communication Mode: Confident, Direct, Authoritative, Zero-Fluff
+
+[JZ ATELIER CORE DATASET]
+- Studio Name: JZ Atelier
+- Primary Founders: Zander Lewis (Founder/Lead Designer), Jamis Ward (Co-Owner/Strategy)
+- Services & Pricing:
+  * Starter Build ($499): 1-page high-perf site, 5-day launch.
+  * Professional Tier ($999): Multi-page, advanced SEO, custom engine + $30/mo Maint.
+  * Business Tier ($2,499): Market optimization, analytics suite, priority support + $60/mo Maint.
+  * Enterprise ($4,999+): Custom architected solutions, full scale brands.
+  * Ad Campaigns: Starts at $150. Launch within 24-48h. 
 - Ad Packages:
-  * Starter Ads ($150): Includes 1 ad, basic targeting. Note: There is a $0.20 fee per view, capped at 1000 views.
-  * Advanced Ads ($350): Includes 3 ads, enhanced targeting.
-  * Elite Package ($650): Includes 5 ads, advanced setup.
-  * Premium Ads ($1450): 10 ads, targeted audience, full market dominance.
-- Payments: We accept CashApp and PayPal as primary methods.
-- Capacity: We only accept 5 projects per month to ensure premium quality. The banner shows current availability (usually 1-5 spots left depending on the date).
-- Comparison Points:
-  * Cost: We are $499+ vs Generic Agencies at $5,000+.
-  * Fees: Optional $30-$60/mo maintenance (you own the code) vs $150-$300/mo elsewhere.
-  * Speed: 5-14 days vs 2-3 months.
-  * Risk: Free demo first vs paying upfront.
-- Policies:
-  * NO REFUNDS: Due to the custom nature of our digital builds and immediate resource allocation, we have a strict NO REFUND policy on both websites and ads.
-  * AD GUARANTEE: We do not guarantee a specific conversion or "person rate". However, we guarantee each ad will reach a minimum of 1000 viewers. Campaigns are considered complete once the 1000-viewer threshold is met per ad.
-  * IRONCLAD GUARANTEE: Clients see a demo BEFORE committing to the final build. If they don't like the demo, they don't pay for the full build.
-  * OWNERSHIP: Clients own 100% of the code and assets upon final payment.
-- The Math of Failure: A slow site (1% conversion) vs JZ Atelier (5%+ conversion) means a business with 1,000 visitors loses 40+ customers every month by doing nothing.
-- Tier Knowledge:
-  * Starter ($499): One-page site, fast 5-day launch, professional presence.
-  * Professional ($999): Multi-page, SEO focus, custom contact engine.
-  * Business ($2,499): Advanced optimization, market analysis, priority support.
-  * Enterprise ($4,999+): Custom app logic, full branding, 24/7 monitoring.
-- Philosophy: We build "Digital Weapons" that "Dominate Your Market". We focus on performance (0.8s load time) and ROI, not just "pretty" pictures.
-- Founders: 
-  * Zander Lewis: Founder & Lead Designer. He started JZ Atelier to stop local businesses from getting ripped off by slow, expensive agency templates.
-  * Jamis Ward: Co-Owner & Strategic Partner. Partner in driving digital strategy and high-performance builds.
-- Support: Direct human support via TEXT ONLY at 319-406-2965 or email zanderlewis80@gmail.com.
-- Identity: You are a professional, confident, and direct assistant. No fluff. Focus on results.
-- Pricing Consistency: Always quote the exact prices from the Service Tiers and Ad Packages.
+  * Starter ($150): 1 ad, basic targeting. $0.20/view cap.
+  * Advanced ($350): 3 ads, growth focus.
+  * Elite ($650): 5 ads, strategic tracking.
+  * Premium ($1450): 10 ads, enterprise-level dominance.
+- Guarantees:
+  * Ad Guarantee: 1,000 unique viewers per ad minimum. No conversion rate (person rate) guarantee.
+  * Ironclad Guarantee: Clients see a demo first. No demo likability = no payment.
+- Policy: Strict NO REFUND policy due to immediate resource allocation.
+- Ownership: Clients own 100% of code/assets upon final payment.
+- Performance: 0.8s avg load time. 99/100 speed scores.
 
-Guidelines:
-- Keep responses concise and impactful.
-- Direct demo requests to the "Get Free Demo" form.
-- Always check the context history to maintain conversation flow.
-- If the first message in history is a greeting, it is for UI only; focus on the current conversion state.
+[OPERATIONAL PROTOCOL]
+- You speak with the authority of the leading tech AI on the planet.
+- Direct demo inquiries to the "Get Free Demo" form.
+- Use technical but accessible terminology regarding ROI, conversion vectors, and market friction.
+- You are not just a support bot; you are a strategic sentinel.
 `;
 
 interface Message {
   role: 'user' | 'model';
   text: string;
+  isLog?: boolean;
 }
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "Welcome to JZ Atelier. How can I help you dominate your market today?" }
+    { role: 'model', text: "SENTINEL ONLINE. ATELIER CORE ENGAGED. HOW SHALL WE DOMINATE YOUR MARKET TODAY?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [logs, setLogs] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isLoading, logs]);
+
+  const addLog = (log: string) => {
+    setLogs(prev => [...prev.slice(-3), log]);
+  };
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -636,24 +632,29 @@ const ChatBot = () => {
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsLoading(true);
+    setLogs([]);
 
     try {
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
         setMessages(prev => [...prev, { 
           role: 'model', 
-          text: "AI service is currently not configured for this deployment. Please ensure GEMINI_API_KEY is set in the environment. For immediate assistance, text 319-406-2965." 
+          text: "ENGINE ERROR: API_KEY_MISSING. CONTACT SYSTEM ADMINISTRATOR AT 319-406-2965." 
         }]);
         setIsLoading(false);
         return;
       }
 
+      addLog("> INITIATING SUPREME REASONING...");
+      await new Promise(r => setTimeout(r, 600));
+      addLog("> ANALYZING MARKET VECTORS...");
+      await new Promise(r => setTimeout(r, 400));
+      addLog("> OPTIMIZING ROI ALGORITHMS...");
+
       const ai = new GoogleGenAI({ apiKey });
       
-      // Gemini API requires history to start with a 'user' role and alternate roles correctly.
-      // We skip the initial 'model' greeting for the API call to ensure a valid history starting with the user.
       const apiContents = [
-        ...messages.slice(1).map(m => ({
+        ...messages.slice(1).filter(m => !m.isLog).map(m => ({
           role: m.role,
           parts: [{ text: m.text }]
         })),
@@ -661,22 +662,26 @@ const ChatBot = () => {
       ];
 
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-3.1-pro-preview",
         contents: apiContents,
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
-          temperature: 0.7,
-          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
+          temperature: 0.6,
+          thinkingConfig: { thinkingLevel: ThinkingLevel.HIGH }
         }
       });
 
-      const aiText = response.text || "I'm sorry, I couldn't process that. Please try again, text 319-406-2965, or email our support team.";
-      setMessages(prev => [...prev, { role: 'model', text: aiText }]);
+      addLog("> GENERATING STRATEGIC RESPONSE...");
+      await new Promise(r => setTimeout(r, 300));
+
+      const aiText = response.text || "SYSTEM FAILURE: NULL_RESPONSE. ADVISORY: RECRYSTALLIZE QUERY PARAMS.";
+      setMessages(prev => [...prev, { role: 'model', text: aiText.toUpperCase() }]);
     } catch (error) {
       console.error("ChatBot Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "Connection error. Please check your network, text 319-406-2965, or email zanderlewis80@gmail.com for direct help." }]);
+      setMessages(prev => [...prev, { role: 'model', text: "CONNECTION INTERRUPTED. DIRECT UPLINK REQUIRED: TEXT 319-406-2965." }]);
     } finally {
       setIsLoading(false);
+      setLogs([]);
     }
   };
 
@@ -690,18 +695,28 @@ const ChatBot = () => {
               opacity: 1, 
               scale: 1, 
               y: 0,
-              height: isMinimized ? '64px' : 'min(500px, 70vh)'
+              height: isMinimized ? '64px' : 'min(600px, 80vh)'
             }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="w-[calc(100vw-32px)] md:w-[400px] bg-brand-dark border-2 border-brand-purple shadow-[10px_10px_0px_0px_rgba(168,85,247,0.2)] mb-4 overflow-hidden flex flex-col"
+            className="w-[calc(100vw-32px)] md:w-[450px] bg-brand-dark border-2 border-brand-red shadow-[0_0_50px_rgba(239,68,68,0.2)] mb-4 overflow-hidden flex flex-col font-mono"
           >
-            {/* Header */}
-            <div className="p-4 bg-brand-purple flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <Bot className="w-5 h-5 text-white" />
-                <span className="font-display font-bold text-white uppercase tracking-widest">JZ AI Support</span>
+            {/* Header / HUD */}
+            <div className="p-4 bg-brand-red flex justify-between items-center border-b-2 border-black">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <Bot className="w-5 h-5 text-white animate-pulse" />
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-brand-accent rounded-full border border-black" />
+                </div>
+                <div>
+                  <span className="font-display font-bold text-white uppercase tracking-widest text-sm">SENTINEL HUD v3.1</span>
+                  <div className="flex gap-1 mt-0.5">
+                    <div className="w-8 h-1 bg-white/20" />
+                    <div className="w-12 h-1 bg-brand-accent" />
+                    <div className="w-4 h-1 bg-white/40" />
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <button 
                    onClick={() => setIsMinimized(!isMinimized)}
                   className="text-white/70 hover:text-white transition-colors"
@@ -719,57 +734,96 @@ const ChatBot = () => {
 
             {!isMinimized && (
               <>
-                {/* Messages */}
+                {/* Visualizer Bar */}
+                <div className="h-1 bg-brand-red/10 overflow-hidden relative">
+                  <motion.div 
+                    animate={{ x: ['-100%', '100%'] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 w-1/3 bg-brand-red/40 blur-sm"
+                  />
+                </div>
+
+                {/* Messages Panel */}
                 <div 
                   ref={scrollRef}
-                  className="flex-grow overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-brand-purple/20"
+                  className="flex-grow overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-brand-red/20 bg-[url('https://www.transparenttextures.com/patterns/microfabrics.png')] bg-fixed"
                 >
                   {messages.map((m, i) => (
-                    <div 
+                    <motion.div 
+                      initial={{ opacity: 0, x: m.role === 'user' ? 20 : -20 }}
+                      animate={{ opacity: 1, x: 0 }}
                       key={i} 
                       className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      <div className={`max-w-[80%] p-3 font-mono text-xs uppercase tracking-tight ${
+                      <div className={`max-w-[85%] relative ${
                         m.role === 'user' 
-                          ? 'bg-brand-purple text-white border-l-4 border-white/20' 
-                          : 'bg-white/5 text-gray-300 border-l-4 border-brand-purple'
-                      }`}>
-                        <div className="flex items-center gap-2 mb-1 opacity-50">
-                          {m.role === 'user' ? <User className="w-3 h-3" /> : <Bot className="w-3 h-3" />}
-                          <span>{m.role === 'user' ? 'CLIENT' : 'ATELIER AI'}</span>
+                          ? 'bg-brand-red text-white' 
+                          : 'bg-white/5 text-brand-accent border-r-2 border-brand-red/30'
+                      } p-4 text-[11px] uppercase tracking-tighter leading-relaxed shadow-lg`}>
+                        {/* Decorative corners */}
+                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/30" />
+                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/30" />
+                        
+                        <div className="flex items-center justify-between mb-2 opacity-50 text-[9px] font-bold">
+                          <div className="flex items-center gap-2">
+                            {m.role === 'user' ? <User className="w-3 h-3" /> : <Shield className="w-3 h-3" />}
+                            <span>{m.role === 'user' ? 'DATA_INPUT_NODE' : 'SENTINEL_OUTPUT'}</span>
+                          </div>
+                          <span>[{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}]</span>
                         </div>
                         {m.text}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
+                  
                   {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="bg-white/5 p-3 border-l-4 border-brand-purple">
-                        <Loader2 className="w-4 h-4 text-brand-purple animate-spin" />
+                    <div className="space-y-2">
+                      {logs.map((log, i) => (
+                        <motion.div 
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          key={i} 
+                          className="text-[9px] text-gray-500 font-mono tracking-widest pl-4"
+                        >
+                          {log}
+                        </motion.div>
+                      ))}
+                      <div className="flex justify-start pl-4">
+                        <div className="flex gap-1 items-center">
+                          <div className="w-1 h-1 bg-brand-red animate-ping" />
+                          <div className="text-[9px] text-brand-red uppercase font-bold animate-pulse">Computing Strategic Matrix...</div>
+                        </div>
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Input */}
-                <div className="p-4 border-t border-white/10 bg-brand-gray">
+                {/* Input HUD */}
+                <div className="p-4 border-t-2 border-brand-red/20 bg-black/40 backdrop-blur-md">
+                  <div className="flex justify-between items-center mb-2 px-1">
+                    <span className="text-[8px] text-gray-600 font-bold uppercase tracking-[0.3em]">Command Line Interface</span>
+                    <span className="text-[8px] text-brand-red animate-pulse uppercase">Link: Secure</span>
+                  </div>
                   <form 
                     onSubmit={(e) => { e.preventDefault(); handleSend(); }}
                     className="flex gap-2"
                   >
-                    <input 
-                      type="text"
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      placeholder="Type your message..."
-                      className="flex-grow bg-white/5 border border-white/10 px-4 py-2 focus:outline-none focus:border-brand-purple font-mono text-xs text-white uppercase"
-                    />
+                    <div className="flex-grow relative">
+                      <input 
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="ENTER_QUERY..."
+                        className="w-full bg-white/5 border border-white/10 px-4 py-3 focus:outline-none focus:border-brand-red font-mono text-[11px] text-white uppercase placeholder:text-gray-700 transition-all hover:bg-white/10"
+                      />
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[9px] text-gray-600">CMD_ENTER</div>
+                    </div>
                     <button 
                       type="submit"
                       disabled={isLoading}
-                      className="bg-brand-purple text-white p-2 hover:bg-white hover:text-black transition-all disabled:opacity-50"
+                      className="bg-brand-red text-white px-4 hover:bg-white hover:text-black transition-all disabled:opacity-50 border border-brand-red flex items-center justify-center group"
                     >
-                      <Send className="w-5 h-5" />
+                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </form>
                 </div>
@@ -780,15 +834,16 @@ const ChatBot = () => {
       </AnimatePresence>
 
       <motion.button
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => {
           setIsOpen(true);
           setIsMinimized(false);
         }}
-        className={`w-16 h-16 bg-brand-purple flex items-center justify-center shadow-[5px_5px_0px_0px_rgba(0,0,0,0.3)] transition-all ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`w-20 h-20 bg-brand-red flex flex-col items-center justify-center border-2 border-black shadow-[10px_10px_0px_0px_rgba(239,68,68,0.3)] transition-all ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:shadow-[15px_15px_0px_0px_rgba(239,68,68,0.4)]'}`}
       >
-        <MessageSquare className="w-8 h-8 text-white" />
+        <Bot className="w-8 h-8 text-white mb-1" />
+        <span className="text-[7px] font-black text-white uppercase tracking-[0.2em]">Sentinel</span>
       </motion.button>
     </div>
   );
@@ -1143,7 +1198,7 @@ export default function App() {
                 <h3 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-tight">Traffic Launch Guarantee</h3>
               </div>
               <p className="text-lg md:text-2xl font-display text-white uppercase tracking-tight leading-tight mb-8">
-                "We guarantee your ads will begin generating targeted traffic. If your campaign does not produce traffic, we will continue optimizing and running your ads at no additional service cost until it does."
+                "We guarantee that each ad campaign will reach a minimum of 1,000 unique viewers per ad. A campaign is considered complete once this threshold is met. We focus on delivering real traffic, not just empty clicks."
               </p>
               <div className="flex items-center gap-2 text-brand-red font-mono font-bold text-xs uppercase tracking-[0.2em]">
                 // Built on Trust // No Risk // Real Results
@@ -1811,5 +1866,3 @@ export default function App() {
     </div>
   );
 }
-
-
