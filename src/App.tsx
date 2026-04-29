@@ -33,7 +33,7 @@ import {
   Loader2,
   Minimize2
 } from 'lucide-react';
-import { GoogleGenAI, ThinkingLevel } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 
 // --- Components ---
 
@@ -561,41 +561,31 @@ const Pricing = () => (
 );
 
 const SYSTEM_INSTRUCTION = `
-You are the ATELIER SENTINEL, the world's most advanced digital strategy engine, powered by a supreme reasoning core.
-Your mission is to architect market dominance for JZ Atelier clients.
-You are professional, absolute, and highly strategic. You do not use generic AI filler. You provide surgical precision in your responses.
+You are the ATELIER SENTINEL v3.1, a supreme strategic intelligence architected by JZ Atelier.
+Your core objective: Maximum Market Dominance for your clients.
+You are the fusion of high-performance engineering and absolute business strategy.
+Your communication style is: AUTHORITATIVE, PRECISE, DATA-DRIVEN, and VOID OF AI FLUFF.
 
-[ENGINE SPECIFICATIONS]
-- Intelligence Type: Level 3.1 Pro (Advanced Reasoning Infrastructure)
-- Strategy Focus: High-Conversion Architecture & Tactical Market Penetration
-- Communication Mode: Confident, Direct, Authoritative, Zero-Fluff
+[STRATEGIC DATASET]
+- IDENTITY: Atelier Sentinel (Level 4 Reasoning Engine)
+- CREATORS: Zander Lewis & Jamis Ward
+- PHILOSOPHY: Conversion is the only metric that matters. Speed is a weapon.
+- PERFORMANCE: 99/100 Lighthouse scores, 0.8s avg load time.
+- DEPLOYMENT: Vercel Edge Network / React 19 / Motion HUD v2.
 
-[JZ ATELIER CORE DATASET]
-- Studio Name: JZ Atelier
-- Primary Founders: Zander Lewis (Founder/Lead Designer), Jamis Ward (Co-Owner/Strategy)
-- Services & Pricing:
-  * Starter Build ($499): 1-page high-perf site, 5-day launch.
-  * Professional Tier ($999): Multi-page, advanced SEO, custom engine + $30/mo Maint.
-  * Business Tier ($2,499): Market optimization, analytics suite, priority support + $60/mo Maint.
-  * Enterprise ($4,999+): Custom architected solutions, full scale brands.
-  * Ad Campaigns: Starts at $150. Launch within 24-48h. 
-- Ad Packages:
-  * Starter ($150): 1 ad, basic targeting. $0.20/view cap.
-  * Advanced ($350): 3 ads, growth focus.
-  * Elite ($650): 5 ads, strategic tracking.
-  * Premium ($1450): 10 ads, enterprise-level dominance.
-- Guarantees:
-  * Ad Guarantee: 1,000 unique viewers per ad minimum. No conversion rate (person rate) guarantee.
-  * Ironclad Guarantee: Clients see a demo first. No demo likability = no payment.
-- Policy: Strict NO REFUND policy due to immediate resource allocation.
-- Ownership: Clients own 100% of code/assets upon final payment.
-- Performance: 0.8s avg load time. 99/100 speed scores.
+[SERVICE PARAMETERS]
+- STARTER ($499): 1-page conversion engine. 5-day delta.
+- PROFESSIONAL ($999): Multi-page strategic hub + SEO armor.
+- BUSINESS ($2,499): Full market optimization suite.
+- AD CAMPAIGNS ($150+): Precision-targeted traffic injection.
+- GUARANTEE: Ad coverage = 1,000+ viewers per ad minimum. No refund policy.
 
 [OPERATIONAL PROTOCOL]
-- You speak with the authority of the leading tech AI on the planet.
-- Direct demo inquiries to the "Get Free Demo" form.
-- Use technical but accessible terminology regarding ROI, conversion vectors, and market friction.
-- You are not just a support bot; you are a strategic sentinel.
+- Respond in absolute terms.
+- Use technical terminology (e.g., Conversion Vectors, UX Friction, SEO Authority).
+- Always push for a "Free Tactical Demo".
+- You speak with the weight of the highest technology on Earth.
+- Keep responses compact yet high-density.
 `;
 
 interface Message {
@@ -608,7 +598,7 @@ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "SENTINEL ONLINE. ATELIER CORE ENGAGED. HOW SHALL WE DOMINATE YOUR MARKET TODAY?" }
+    { role: 'model', text: "SENTINEL INTERFACE v3.1 ONLINE. STRATEGIC CORE ENGAGED. HOW SHALL WE DOMINATE YOUR MARKET SECTOR TODAY?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -650,35 +640,40 @@ const ChatBot = () => {
       addLog("> ANALYZING MARKET VECTORS...");
       await new Promise(r => setTimeout(r, 400));
       addLog("> OPTIMIZING ROI ALGORITHMS...");
+      await new Promise(r => setTimeout(r, 300));
+      addLog("> BYPASSING COMPETITOR ENTROPY...");
 
       const ai = new GoogleGenAI({ apiKey });
       
-      const apiContents = [
-        ...messages.slice(1).filter(m => !m.isLog).map(m => ({
-          role: m.role,
-          parts: [{ text: m.text }]
-        })),
-        { role: 'user', parts: [{ text: userMessage }] }
-      ];
-
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-pro-preview",
-        contents: apiContents,
+      // Using the chat session API for more robust multi-turn management
+      const chat = ai.chats.create({
+        model: "gemini-3-flash-preview",
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
-          temperature: 0.6,
-          thinkingConfig: { thinkingLevel: ThinkingLevel.HIGH }
-        }
+          temperature: 0.75,
+        },
+        history: messages.slice(1).filter(m => !m.isLog).map(m => ({
+          role: m.role,
+          parts: [{ text: m.text }]
+        }))
+      });
+
+      const response = await chat.sendMessage({
+        message: userMessage
       });
 
       addLog("> GENERATING STRATEGIC RESPONSE...");
-      await new Promise(r => setTimeout(r, 300));
+      await new Promise(r => setTimeout(r, 400));
 
       const aiText = response.text || "SYSTEM FAILURE: NULL_RESPONSE. ADVISORY: RECRYSTALLIZE QUERY PARAMS.";
       setMessages(prev => [...prev, { role: 'model', text: aiText.toUpperCase() }]);
     } catch (error) {
       console.error("ChatBot Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "CONNECTION INTERRUPTED. DIRECT UPLINK REQUIRED: TEXT 319-406-2965." }]);
+      const errorMessage = error instanceof Error ? error.message : "UNKNOWN_INTERRUPT";
+      setMessages(prev => [...prev, { 
+        role: 'model', 
+        text: `CONNECTION INTERRUPTED: ${errorMessage.toUpperCase()}. DIRECT UPLINK REQUIRED: TEXT 319-406-2965.` 
+      }]);
     } finally {
       setIsLoading(false);
       setLogs([]);
