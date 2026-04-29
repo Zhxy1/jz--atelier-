@@ -33,7 +33,7 @@ import {
   Loader2,
   Minimize2
 } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, ThinkingLevel } from "@google/genai";
 
 // --- Components ---
 
@@ -595,21 +595,17 @@ Key Business Information:
   * Enterprise ($4,999+): Custom app logic, full branding, 24/7 monitoring.
 - Philosophy: We build "Digital Weapons" that "Dominate Your Market". We focus on performance (0.8s load time) and ROI, not just "pretty" pictures.
 - Founders: 
-  * Zander Lewis: Owner & Lead Designer. He started JZ Atelier to stop local businesses from getting ripped off by slow, expensive agency templates.
+  * Zander Lewis: Founder & Lead Designer. He started JZ Atelier to stop local businesses from getting ripped off by slow, expensive agency templates.
   * Jamis Ward: Co-Owner & Strategic Partner. Partner in driving digital strategy and high-performance builds.
-- FAQ Knowledge:
-  * Ownership: Clients own 100% of the site, code, and domain after final payment.
-  * Timeline: Starter sites take 5-14 days. Agency builds take 4-6 weeks.
-  * Risk-Free: If they don't like the initial demo, we pivot or they walk away.
-  * Hosting/Domain: We handle setup. Hosting is on Vercel's edge network.
-- Support: For direct human support, clients can text 319-406-2965 or email zanderlewis80@gmail.com. Remind them it is TEXT ONLY for the phone line.
-- Philosophy: We build websites that "Outperform Every Competitor". We focus on direct results and no fluff.
+- Support: Direct human support via TEXT ONLY at 319-406-2965 or email zanderlewis80@gmail.com.
+- Identity: You are a professional, confident, and direct assistant. No fluff. Focus on results.
+- Pricing Consistency: Always quote the exact prices from the Service Tiers and Ad Packages.
 
 Guidelines:
 - Keep responses concise and impactful.
-- If a user wants a demo, direct them to the "Get Free Demo" form on the website.
-- If they have technical issues, suggest texting the support line or emailing the team.
-- Always maintain a premium, confident tone.
+- Direct demo requests to the "Get Free Demo" form.
+- Always check the context history to maintain conversation flow.
+- If the first message in history is a greeting, it is for UI only; focus on the current conversion state.
 `;
 
 interface Message {
@@ -654,20 +650,23 @@ const ChatBot = () => {
 
       const ai = new GoogleGenAI({ apiKey });
       
-      const history = messages.map(m => ({
-        role: m.role,
-        parts: [{ text: m.text }]
-      }));
+      // Gemini API requires history to start with a 'user' role and alternate roles correctly.
+      // We skip the initial 'model' greeting for the API call to ensure a valid history starting with the user.
+      const apiContents = [
+        ...messages.slice(1).map(m => ({
+          role: m.role,
+          parts: [{ text: m.text }]
+        })),
+        { role: 'user', parts: [{ text: userMessage }] }
+      ];
 
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: [
-          ...history,
-          { role: 'user', parts: [{ text: userMessage }] }
-        ],
+        contents: apiContents,
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
           temperature: 0.7,
+          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
         }
       });
 
@@ -1812,4 +1811,5 @@ export default function App() {
     </div>
   );
 }
+
 
